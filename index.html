@@ -1,863 +1,306 @@
-/* Variables */
-:root {
-    --tedx-red: #eb0028;
-    --dark-primary: #1a1a1a;
-    --dark-secondary: #2c2c2c;
-    --light-background: #f0f2f5;
-    --text-color: #333333;
-    --white: #ffffff;
-    --gray-light: #cccccc;
-    --gray-medium: #888888;
-    --font-heading: 'Montserrat', sans-serif;
-    --font-body: 'Lato', sans-serif;
-    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.1);
-    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-/* Base Reset & Global Styles */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: var(--font-body);
-    color: var(--text-color);
-    line-height: 1.6;
-    background-color: var(--light-background);
-    scroll-behavior: smooth;
-}
-
-a {
-    text-decoration: none;
-    color: var(--tedx-red); /* Default link color for visibility */
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: var(--dark-primary);
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 25px;
-}
-
-.x-red {
-    color: var(--tedx-red);
-}
-
-/* Reusable Buttons */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 28px;
-    border-radius: 5px;
-    font-family: var(--font-heading);
-    font-weight: 600;
-    font-size: 0.95rem;
-    cursor: pointer;
-    border: none;
-    transition: all 0.3s ease;
-}
-
-.btn-primary {
-    background-color: var(--tedx-red);
-    color: var(--white) !important;
-}
-
-.btn-primary:hover {
-    background-color: #c90022;
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-light);
-}
-
-.btn-secondary {
-    background-color: var(--dark-primary);
-    color: var(--white) !important;
-}
-
-.btn-secondary:hover {
-    background-color: var(--dark-secondary);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-light);
-}
-
-.btn-outline {
-    background-color: transparent;
-    color: var(--tedx-red) !important;
-    border: 2px solid var(--tedx-red);
-}
-
-.btn-outline:hover {
-    background-color: var(--tedx-red);
-    color: var(--white) !important;
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-light);
-}
-
-.large-btn {
-    padding: 15px 35px;
-    font-size: 1.1rem;
-}
-
-.btn i {
-    margin-left: 10px;
-}
-
-/* Section Titles & Subtitles */
-.section-title {
-    font-family: var(--font-heading);
-    font-size: 2.8rem;
-    font-weight: 800;
-    color: var(--dark-primary);
-    margin-bottom: 20px;
-    position: relative;
-    padding-bottom: 15px;
-    display: inline-block;
-}
-
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background-color: var(--tedx-red);
-    border-radius: 2px;
-}
-
-.section-subtitle {
-    font-family: var(--font-body);
-    font-size: 1.2rem;
-    color: var(--gray-medium);
-    margin-bottom: 60px;
-}
-
-/* Header */
-.main-header {
-    background-color: var(--white);
-    box-shadow: var(--shadow-light);
-    padding: 15px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.main-header .logo {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--dark-primary);
-}
-
-.nav-links a {
-    margin-left: 35px;
-    font-family: var(--font-heading);
-    font-weight: 600;
-    font-size: 1rem;
-    color: var(--text-color);
-}
-
-.nav-links a:hover {
-    color: var(--tedx-red);
-}
-
-.menu-toggle {
-    font-size: 1.8rem;
-    color: var(--dark-primary);
-    cursor: pointer;
-    display: none; /* Hidden on desktop */
-}
-
-/* Hero Section */
-.hero-section {
-    position: relative;
-    height: 90vh; /* Full viewport height */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--white);
-    overflow: hidden;
-    background: var(--dark-primary); /* Fallback */
-}
-
-.hero-bg-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(26, 26, 26, 0.6) 100%);
-    background-image: url('https://via.placeholder.com/1920x1080/000000/FFFFFF?text=Inspiring+Stage+Background'); /* Placeholder background */
-    background-size: cover;
-    background-position: center;
-    filter: brightness(0.7); /* Darken the image */
-    z-index: 1;
-}
-
-/* If you use a real image tag, style it like this */
-/* .hero-bg-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
-    filter: brightness(0.6);
-} */
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    padding-top: 50px; /* Space for sticky header */
-}
-
-.hero-content .event-tagline {
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    font-weight: 600;
-    letter-spacing: 3px;
-    margin-bottom: 20px;
-    color: var(--tedx-red);
-}
-
-.hero-content h1 {
-    font-family: var(--font-heading);
-    font-size: 5rem;
-    font-weight: 800;
-    letter-spacing: 4px;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
-}
-
-.hero-content h2 {
-    font-family: var(--font-body);
-    font-size: 1.8rem;
-    font-weight: 300;
-    margin-bottom: 40px;
-}
-
-/* Countdown Timer */
-.countdown-timer {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    margin-bottom: 50px;
-}
-
-.time-block {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 15px 25px;
-    border-radius: 8px;
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--white);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 100px;
-}
-
-.time-block span {
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--tedx-red);
-    line-height: 1;
-    margin-bottom: 5px;
-}
-
-
-/* General Section Styling */
-.section {
-    padding: 100px 0;
-    text-align: center;
-}
-
-.section:nth-child(even) {
-    background-color: var(--white);
-}
-
-.lead-paragraph {
-    font-size: 1.25rem;
-    font-weight: 400;
-    color: var(--dark-primary);
-    margin-bottom: 25px;
-}
-
-/* About Section */
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    text-align: left;
-    align-items: center;
-    margin-top: 50px;
-}
-
-.about-text p {
-    margin-bottom: 20px;
-}
-
-.about-visual {
-    background-color: var(--gray-light);
-    height: 350px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: var(--shadow-medium);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-heading);
-    color: var(--gray-medium);
-    font-size: 1.2rem;
-    background-image: url('https://via.placeholder.com/600x400/CCCCCC/666666?text=TEDx+Community+Image'); /* Placeholder */
-    background-size: cover;
-    background-position: center;
-}
-
-/* If using an actual img tag for about visual */
-/* .about-visual img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-} */
-
-
-/* Speakers Section */
-.speakers-section {
-    background-color: var(--light-background);
-}
-
-.speaker-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
-    margin-top: 50px;
-}
-
-.speaker-card {
-    background-color: var(--white);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: var(--shadow-light);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
-    padding-bottom: 20px;
-}
-
-.speaker-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-medium);
-}
-
-.speaker-photo-wrapper {
-    height: 250px;
-    width: 100%;
-    background-color: var(--gray-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    overflow: hidden;
-    background-image: url('https://via.placeholder.com/400x400/E0E0E0/666666?text=Speaker+Photo'); /* Placeholder */
-    background-size: cover;
-    background-position: center;
-}
-
-/* If using an actual img tag for speaker photo */
-/* .speaker-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-.speaker-card:hover .speaker-photo {
-    transform: scale(1.05);
-} */
-
-.speaker-card h3 {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--dark-primary);
-    margin-bottom: 10px;
-}
-
-.speaker-card .speaker-bio {
-    font-size: 0.95rem;
-    color: var(--gray-medium);
-    padding: 0 20px;
-    margin-bottom: 20px;
-}
-
-.social-links-small a {
-    font-size: 1.2rem;
-    margin: 0 8px;
-    color: var(--gray-medium);
-}
-
-.social-links-small a:hover {
-    color: var(--tedx-red);
-}
-
-
-/* Previous Events Timeline */
-.event-timeline {
-    position: relative;
-    max-width: 900px;
-    margin: 80px auto;
-    padding: 0 20px;
-}
-
-.event-timeline::before {
-    content: '';
-    position: absolute;
-    width: 4px;
-    background-color: var(--tedx-red);
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    margin-left: -2px;
-}
-
-.timeline-item {
-    padding: 10px 0;
-    position: relative;
-    width: 50%;
-}
-
-.timeline-item:nth-child(odd) {
-    left: 0;
-}
-
-.timeline-item:nth-child(even) {
-    left: 50%;
-}
-
-.timeline-content {
-    background-color: var(--white);
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: var(--shadow-light);
-    position: relative;
-    text-align: left;
-    margin-left: 40px;
-    transition: transform 0.3s ease;
-}
-
-.timeline-item:nth-child(even) .timeline-content {
-    margin-left: 0;
-    margin-right: 40px;
-}
-
-.timeline-content:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-medium);
-}
-
-.timeline-item::after {
-    content: '';
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    right: -8px;
-    background-color: var(--tedx-red);
-    border: 3px solid var(--white);
-    top: 30px;
-    border-radius: 50%;
-    z-index: 1;
-}
-
-.timeline-item:nth-child(even)::after {
-    left: -8px;
-}
-
-.timeline-content h3 {
-    font-family: var(--font-heading);
-    font-size: 1.6rem;
-    color: var(--dark-primary);
-    margin-bottom: 10px;
-}
-
-.timeline-content .theme {
-    font-style: italic;
-    color: var(--gray-medium);
-    margin-bottom: 10px;
-}
-
-.timeline-content .date {
-    display: block;
-    color: var(--gray-medium);
-    font-size: 0.9rem;
-    margin-bottom: 15px;
-}
-
-.timeline-content .date i {
-    margin-right: 5px;
-    color: var(--tedx-red);
-}
-
-/* Event Thumbnail Placeholder */
-/* .event-thumbnail {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 5px;
-    margin-bottom: 15px;
-} */
-.timeline-content .view-talks-link {
-    font-weight: 600;
-    color: var(--tedx-red);
-}
-
-
-/* Call To Action Section */
-.call-to-action {
-    background-color: var(--tedx-red);
-    color: var(--white);
-    padding: 80px 0;
-}
-
-.call-to-action h2 {
-    font-family: var(--font-heading);
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-}
-
-.call-to-action p {
-    font-size: 1.3rem;
-    font-weight: 300;
-    margin-bottom: 40px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-
-/* Contact Us Section */
-.contact-us {
-    background-color: var(--white);
-}
-
-.contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 50px;
-    margin-bottom: 60px;
-}
-
-.contact-info-block {
-    background-color: var(--light-background);
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: var(--shadow-light);
-    text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.contact-info-block:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-medium);
-}
-
-.contact-info-block i {
-    font-size: 2.5rem;
-    color: var(--tedx-red);
-    margin-bottom: 20px;
-}
-
-.contact-info-block h3 {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--dark-primary);
-    margin-bottom: 15px;
-}
-
-.contact-info-block p {
-    font-size: 0.95rem;
-    color: var(--gray-medium);
-    margin-bottom: 8px;
-}
-
-.contact-info-block p a {
-    color: var(--gray-medium);
-}
-
-.contact-info-block p a:hover {
-    color: var(--tedx-red);
-    text-decoration: underline;
-}
-
-.contact-form-map-placeholder {
-    height: 400px;
-    background-color: var(--light-background);
-    border-radius: 8px;
-    box-shadow: var(--shadow-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-heading);
-    color: var(--gray-medium);
-    font-size: 1.5rem;
-    background-image: url('https://via.placeholder.com/1000x400/E0E0E0/666666?text=Map+or+Contact+Form'); /* Placeholder */
-    background-size: cover;
-    background-position: center;
-}
-
-
-/* Footer */
-.main-footer {
-    background-color: var(--dark-primary);
-    color: var(--white);
-    padding: 60px 0 20px;
-    font-size: 0.9rem;
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 40px;
-    text-align: left;
-    margin-bottom: 40px;
-}
-
-.footer-brand .logo {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--white);
-    margin-bottom: 15px;
-    display: block;
-}
-
-.footer-brand .license {
-    color: var(--gray-light);
-    font-size: 0.85rem;
-    line-height: 1.5;
-}
-
-.footer-links h4, .footer-social h4 {
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--tedx-red);
-    margin-bottom: 20px;
-}
-
-.footer-links ul {
-    list-style: none;
-}
-
-.footer-links ul li {
-    margin-bottom: 10px;
-}
-
-.footer-links a {
-    color: var(--gray-light);
-    font-size: 0.95rem;
-}
-
-.footer-links a:hover {
-    color: var(--white);
-}
-
-.social-icons a {
-    font-size: 1.8rem;
-    margin-right: 20px;
-    color: var(--gray-light);
-    opacity: 0.8;
-}
-
-.social-icons a:hover {
-    color: var(--tedx-red);
-    opacity: 1;
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--gray-light);
-    font-size: 0.85rem;
-}
-
-
-/* --- Responsive Design (for "graphics" on smaller screens) --- */
-@media (max-width: 992px) {
-    .header-content {
-        padding: 0 20px;
-    }
-    .nav-links {
-        display: none; /* Hide desktop nav by default */
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: var(--white);
-        box-shadow: var(--shadow-medium);
-        padding: 20px 0;
-        border-top: 1px solid var(--light-background);
-    }
-    .nav-links.active {
-        display: flex; /* Show when active */
-    }
-    .nav-links a {
-        margin: 10px 25px;
-        text-align: center;
-    }
-    .menu-toggle {
-        display: block; /* Show hamburger icon */
-    }
-
-    .hero-content h1 {
-        font-size: 4rem;
-    }
-    .hero-content h2 {
-        font-size: 1.5rem;
-    }
-    .countdown-timer {
-        gap: 15px;
-    }
-    .time-block {
-        padding: 10px 15px;
-        font-size: 0.9rem;
-        min-width: 80px;
-    }
-    .time-block span {
-        font-size: 2.2rem;
-    }
-
-    .section-title {
-        font-size: 2.2rem;
-    }
-    .section-subtitle {
-        font-size: 1rem;
-    }
-
-    .about-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    .about-visual {
-        height: 300px;
-        order: -1; /* Image above text on mobile */
-    }
-
-    .speaker-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 25px;
-    }
-
-    .event-timeline::before {
-        left: 20px; /* Align timeline to left on mobile */
-    }
-    .timeline-item {
-        width: 100%;
-        left: 0;
-        padding-left: 40px;
-    }
-    .timeline-item::after {
-        left: 15px;
-    }
-    .timeline-item:nth-child(even) .timeline-content {
-        margin-right: 0;
-    }
-    .timeline-item:nth-child(even)::after {
-        left: 15px;
-    }
-
-    .call-to-action h2 {
-        font-size: 2.2rem;
-    }
-    .call-to-action p {
-        font-size: 1.1rem;
-    }
-
-    .contact-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-    .footer-brand .logo {
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .footer-links ul {
-        padding-left: 0;
-    }
-    .footer-social .social-icons {
-        justify-content: center;
-        display: flex;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-content h1 {
-        font-size: 3rem;
-        letter-spacing: 2px;
-    }
-    .hero-content h2 {
-        font-size: 1.2rem;
-    }
-    .countdown-timer {
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-    .time-block {
-        min-width: unset;
-        width: 45%;
-        flex-grow: 1;
-    }
-    .time-block span {
-        font-size: 1.8rem;
-    }
-    .btn.large-btn {
-        padding: 12px 25px;
-        font-size: 1rem;
-    }
-
-    .section-title {
-        font-size: 1.8rem;
-    }
-    .lead-paragraph {
-        font-size: 1.1rem;
-    }
-    .speaker-card h3 {
-        font-size: 1.5rem;
-    }
-
-    .timeline-content {
-        padding: 20px;
-    }
-    .timeline-content h3 {
-        font-size: 1.4rem;
-    }
-    .timeline-content .theme {
-        font-size: 0.85rem;
-    }
-    .timeline-content .date {
-        font-size: 0.8rem;
-    }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEDxVIT 2025 | Breakthrough: Ideas Shaping Tomorrow</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    </head>
+
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <a href="#" class="logo">TED<span class="x-red">x</span>VIT</a>
+            
+            <nav class="nav-links">
+                <a href="#about">About</a>
+                <a href="#speakers">Speakers</a>
+                <a href="#previous-events">Past Events</a>
+                <a href="#contact">Contact</a>
+                <a href="#" class="btn btn-primary">Get Tickets</a>
+            </nav>
+            
+            <div class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-bg-overlay"></div> 
+        
+        <div class="container hero-content">
+            <p class="event-tagline">ANNUAL EVENT 2025</p>
+            <h1>BREAKTHROUGH</h1>
+            <h2>The Future Stage: Ideas Shaping Tomorrow</h2>
+            
+            <div class="countdown-timer" id="countdown">
+                <div class="time-block"><span id="days">00</span>Days</div>
+                <div class="time-block"><span id="hours">00</span>Hours</div>
+                <div class="time-block"><span id="minutes">00</span>Mins</div>
+                <div class="time-block"><span id="seconds">00</span>Secs</div>
+            </div>
+
+            <a href="#" class="btn btn-primary large-btn">
+                Register Now <i class="fas fa-ticket-alt"></i>
+            </a>
+            <a href="#speakers" class="btn btn-outline large-btn" style="margin-left: 15px;">
+                Meet Speakers <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title">What is TED<span class="x-red">x</span>?</h2>
+            <p class="section-subtitle">Bringing the power of ideas to our local community.</p>
+
+            <div class="about-grid">
+                <div class="about-visual">
+                    </div>
+                <div class="about-text">
+                    <p class="lead-paragraph">
+                        In the spirit of **"ideas worth spreading,"** TED has created TEDx: a program of local, self-organized events that bring people together to share a TED-like experience.
+                    </p>
+                    <p>
+                        Our event, **TEDxVIT**, is fully independent, organized by passionate local volunteers who seek to uncover new ideas and share cutting-edge research relevant to our community. The **'x'** means it's independently organized, but it adheres to TED's core values.
+                    </p>
+                    <p>
+                        At TEDxVIT, powerful live speakers and curated TED Talk videos combine to spark deep discussion and connection in a small, intimate group setting, fostering a genuine exchange of transformative thought.
+                    </p>
+                    <a href="#" class="btn btn-secondary" style="margin-top: 20px;">
+                        Explore the TEDx Mission
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section speakers-section" id="speakers">
+        <div class="container">
+            <h2 class="section-title">Our Visionaries</h2>
+            <p class="section-subtitle">Meet the innovators and thought leaders on the TEDxVIT stage.</p>
+
+            <div class="speaker-grid">
+                <div class="speaker-card">
+                    <div class="speaker-photo-wrapper" style="background-image: url('https://via.placeholder.com/400x400/1A1A1A/FFFFFF?text=Dr.+Ramesh+M');"></div>
+                    <h3>Dr. Ramesh M.</h3>
+                    <p class="x-red" style="font-weight: 600;">AI & Future Technology</p>
+                    <p class="speaker-bio">Leading expert on decentralized AI systems and data privacy.</p>
+                    <div class="social-links-small">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="speaker-card">
+                    <div class="speaker-photo-wrapper" style="background-image: url('https://via.placeholder.com/400x400/1A1A1A/FFFFFF?text=Ms.+Priya+S');"></div>
+                    <h3>Ms. Priya S.</h3>
+                    <p class="x-red" style="font-weight: 600;">Sustainable Urbanism</p>
+                    <p class="speaker-bio">Architect promoting zero-waste design and community resilience.</p>
+                    <div class="social-links-small">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="speaker-card">
+                    <div class="speaker-photo-wrapper" style="background-image: url('https://via.placeholder.com/400x400/1A1A1A/FFFFFF?text=Mr.+Arun+V');"></div>
+                    <h3>Mr. Arun V.</h3>
+                    <p class="x-red" style="font-weight: 600;">Mental Wellness Pioneer</p>
+                    <p class="speaker-bio">Founder of a successful social-emotional learning platform.</p>
+                    <div class="social-links-small">
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="speaker-card">
+                    <div class="speaker-photo-wrapper" style="background-image: url('https://via.placeholder.com/400x400/1A1A1A/FFFFFF?text=Dr.+Anjali+K');"></div>
+                    <h3>Dr. Anjali K.</h3>
+                    <p class="x-red" style="font-weight: 600;">Space Economics</p>
+                    <p class="speaker-bio">Astrophysicist and consultant on commercial space ventures.</p>
+                    <div class="social-links-small">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="#" class="btn btn-outline large-btn" style="margin-top: 50px;">
+                View Detailed Speaker Bios
+            </a>
+        </div>
+    </section>
+
+    <section class="section" id="previous-events">
+        <div class="container">
+            <h2 class="section-title">Our Legacy</h2>
+            <p class="section-subtitle">A look back at the ideas that shaped our previous events.</p>
+
+            <div class="event-timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>TEDxVIT 2024</h3>
+                        <p class="theme">Theme: **Nurture The Future**</p>
+                        <span class="date"><i class="far fa-calendar-alt"></i> January 2024</span>
+                        <p>Focused on regenerative practices, human-centric design, and conscious consumption.</p>
+                        <a href="#" class="view-talks-link">Watch Talks &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>TEDxVIT 2021</h3>
+                        <p class="theme">Theme: **Epiphany**</p>
+                        <span class="date"><i class="far fa-calendar-alt"></i> May 2021</span>
+                        <p>Explored moments of sudden realization, innovation born from crisis, and paradigm shifts.</p>
+                        <a href="#" class="view-talks-link">Watch Talks &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>TEDxVIT 2019</h3>
+                        <p class="theme">Theme: **Ideas Worth Spreading**</p>
+                        <span class="date"><i class="far fa-calendar-alt"></i> March 2019</span>
+                        <p>Our inaugural event, celebrating the fundamental TED mission with local flavor.</p>
+                        <a href="#" class="view-talks-link">Watch Talks &rarr;</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="call-to-action">
+        <div class="container">
+            <h2>Ready to Witness the Breakthrough?</h2>
+            <p>
+                Join us for a day of inspiration, connection, and revolutionary ideas that will shape your perspective and ignite your passion for change.
+            </p>
+            <a href="#" class="btn btn-secondary large-btn">
+                Secure Your Seat Today <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <section class="section contact-us" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">We'd love to hear from you for partnerships, media, or general inquiries.</p>
+
+            <div class="contact-grid">
+                <div class="contact-info-block">
+                    <i class="fas fa-envelope"></i>
+                    <h3>General Inquiries</h3>
+                    <p>Reach out for event details and general questions.</p>
+                    <p><a href="mailto:info@tedxvit.com">info@tedxvit.com</a></p>
+                </div>
+
+                <div class="contact-info-block">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Venue Location</h3>
+                    <p>VELS University Auditorium</p>
+                    <p><a href="#">Chennai, Tamil Nadu</a></p>
+                </div>
+
+                <div class="contact-info-block">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Support Line</h3>
+                    <p>For urgent ticket or registration support.</p>
+                    <p><a href="tel:+919324038187">+91 93240 38187</a></p>
+                </div>
+            </div>
+            
+            <div class="contact-form-map-placeholder">
+                <p>Contact Form / Embedded Map</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="logo">TED<span class="x-red">x</span>VIT</a>
+                    <p class="license">
+                        This independent TEDx event is operated under license from TED.
+                        <br>&copy; 2025 TEDxVIT. All Rights Reserved.
+                    </p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About TEDx</a></li>
+                        <li><a href="#speakers">Speaker Lineup</a></li>
+                        <li><a href="#previous-events">Past Talks</a></li>
+                        <li><a href="#">Apply to Speak</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                Designed with the spirit of ideas worth spreading.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- Mobile Menu Toggle ---
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // --- Countdown Timer Logic (for the Hero Section) ---
+        const eventDate = new Date("2025-02-15T09:00:00").getTime(); // Target event date
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            const formatTime = (time) => String(time).padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "<p class='event-tagline' style='font-size: 2rem; color: var(--tedx-red);'>EVENT IS LIVE!</p>";
+            } else {
+                document.getElementById("days").innerHTML = formatTime(days);
+                document.getElementById("hours").innerHTML = formatTime(hours);
+                document.getElementById("minutes").innerHTML = formatTime(minutes);
+                document.getElementById("seconds").innerHTML = formatTime(seconds);
+            }
+        }, 1000);
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 992) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
