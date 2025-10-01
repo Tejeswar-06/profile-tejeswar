@@ -1,310 +1,863 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEDxVIT 2025 | Breakthrough: Ideas Shaping Tomorrow</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <style>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'ted-red': '#eb0028',
-                        'black-primary': '#1A1A1A',
-                        'black-secondary': '#2C2C2C',
-                        'off-white': '#F7F7F7',
-                    },
-                    fontFamily: {
-                        sans: ['Montserrat', 'sans-serif'],
-                        mono: ['Roboto Mono', 'monospace'],
-                    },
-                }
-            }
-        }
-        /* Custom Styles for the TEDx Red Underline */
-        .section-title-underline {
-            position: relative;
-            display: inline-block;
-            padding-bottom: 0.5rem;
-        }
-        .section-title-underline::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4rem;
-            height: 4px;
-            background-color: #eb0028;
-            border-radius: 2px;
-        }
-    </style>
-</head>
+/* Variables */
+:root {
+    --tedx-red: #eb0028;
+    --dark-primary: #1a1a1a;
+    --dark-secondary: #2c2c2c;
+    --light-background: #f0f2f5;
+    --text-color: #333333;
+    --white: #ffffff;
+    --gray-light: #cccccc;
+    --gray-medium: #888888;
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Lato', sans-serif;
+    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
 
-<body class="font-sans text-black-primary bg-off-white">
+/* Base Reset & Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    <header class="sticky top-0 z-50 bg-black-primary shadow-xl">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-3xl font-extrabold text-white">
-                TED<span class="text-ted-red">x</span>VIT
-            </a>
-            <nav class="hidden md:flex space-x-8 items-center text-lg font-semibold">
-                <a href="#about" class="text-white hover:text-ted-red transition duration-300">About</a>
-                <a href="#speakers" class="text-white hover:text-ted-red transition duration-300">Speakers</a>
-                <a href="#schedule" class="text-white hover:text-ted-red transition duration-300">Schedule</a>
-                <a href="#contact" class="text-white hover:text-ted-red transition duration-300">Contact</a>
-                <a href="#" class="bg-ted-red text-white px-6 py-2 rounded-full font-bold shadow-lg hover:bg-white hover:text-ted-red transition duration-300 border-2 border-ted-red">Get Tickets</a>
-            </nav>
-            <button class="md:hidden text-2xl text-white" id="menu-toggle" aria-label="Toggle Menu">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-black-secondary shadow-inner">
-            <a href="#about" class="block py-3 px-6 text-white hover:bg-ted-red transition duration-300">About</a>
-            <a href="#speakers" class="block py-3 px-6 text-white hover:bg-ted-red transition duration-300">Speakers</a>
-            <a href="#schedule" class="block py-3 px-6 text-white hover:bg-ted-red transition duration-300">Schedule</a>
-            <a href="#contact" class="block py-3 px-6 text-white hover:bg-ted-red transition duration-300">Contact</a>
-            <a href="#" class="block py-3 px-6 bg-ted-red text-white text-center font-bold">Get Tickets</a>
-        </div>
-    </header>
+body {
+    font-family: var(--font-body);
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--light-background);
+    scroll-behavior: smooth;
+}
 
-    <section class="relative h-[85vh] flex items-center justify-center text-center bg-black-primary overflow-hidden">
-        <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('https://via.placeholder.com/1920x1080/1A1A1A/E0E0E0?text=TEDx+Stage+Visual');"></div>
-        <div class="absolute inset-0 bg-black-primary opacity-60"></div>
-        
-        <div class="relative z-10 max-w-5xl px-4">
-            <p class="text-xl tracking-widest uppercase text-ted-red font-semibold mb-4 animate-pulse">TEDxVIT 2025</p>
-            <h1 class="text-7xl md:text-8xl lg:text-9xl font-extrabold text-white mb-4 leading-tight">
-                BREAKTHROUGH
-            </h1>
-            <h2 class="text-2xl md:text-3xl font-light text-white mb-10 border-b-2 border-ted-red pb-4 inline-block">
-                Ideas Shaping Tomorrow
-            </h2>
-            
-            <div class="flex justify-center space-x-6 mb-12" id="countdown">
-                <div class="bg-ted-red/90 p-4 rounded-xl shadow-2xl w-24 md:w-36 transition duration-500 hover:scale-105">
-                    <span id="days" class="text-5xl font-mono font-bold text-white block leading-none">00</span>
-                    <span class="text-xs uppercase text-black-primary font-bold mt-1">Days</span>
-                </div>
-                <div class="bg-white/90 p-4 rounded-xl shadow-2xl w-24 md:w-36 transition duration-500 hover:scale-105">
-                    <span id="hours" class="text-5xl font-mono font-bold text-ted-red block leading-none">00</span>
-                    <span class="text-xs uppercase text-black-primary font-bold mt-1">Hours</span>
-                </div>
-                <div class="bg-ted-red/90 p-4 rounded-xl shadow-2xl w-24 md:w-36 transition duration-500 hover:scale-105">
-                    <span id="minutes" class="text-5xl font-mono font-bold text-white block leading-none">00</span>
-                    <span class="text-xs uppercase text-black-primary font-bold mt-1">Mins</span>
-                </div>
-                <div class="bg-white/90 p-4 rounded-xl shadow-2xl w-24 md:w-36 transition duration-500 hover:scale-105">
-                    <span id="seconds" class="text-5xl font-mono font-bold text-ted-red block leading-none">00</span>
-                    <span class="text-xs uppercase text-black-primary font-bold mt-1">Secs</span>
-                </div>
-            </div>
+a {
+    text-decoration: none;
+    color: var(--tedx-red); /* Default link color for visibility */
+    transition: color 0.3s ease;
+}
 
-            <a href="#" class="inline-flex items-center bg-white text-ted-red text-xl px-10 py-4 rounded-full font-bold shadow-2xl border-4 border-ted-red hover:bg-ted-red hover:text-white transform hover:scale-105 transition duration-300">
-                Book Your Experience <i class="fas fa-ticket-alt ml-3"></i>
-            </a>
-        </div>
-    </section>
+a:hover {
+    color: var(--dark-primary);
+}
 
-    <section class="py-24 bg-white" id="about">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="section-title-underline text-4xl font-extrabold text-black-primary mb-16">The Spirit of TED<span class="text-ted-red">x</span></h2>
-            
-            <div class="grid md:grid-cols-2 gap-12 items-center text-left">
-                <div class="space-y-6">
-                    <p class="text-2xl font-bold text-black-primary leading-snug">
-                        TEDx is an independently organized event bringing the global movement of **ideas worth spreading** to our local community.
-                    </p>
-                    <p class="text-lg text-black-secondary">
-                        Our event, **TEDxVIT**, is a platform for local innovators, thinkers, and doers to share their unique perspectives. It is a day where live presentations and curated TED Talk videos combine to ignite profound conversations and foster deep connections among the attendees.
-                    </p>
-                    <p class="text-lg text-black-secondary">
-                        The 'x' signifies that this is a fully self-organized event, licensed under the guidance of the main TED conference, ensuring we adhere to the core values of inspiration and intellectual rigor.
-                    </p>
-                </div>
-                <div class="h-96 bg-black-secondary/90 rounded-2xl shadow-2xl overflow-hidden flex items-center justify-center border-4 border-ted-red transition duration-500 hover:border-white">
-                    <i class="fas fa-lightbulb text-6xl text-ted-red opacity-80 animate-pulse"></i>
-                    <i class="fas fa-users text-8xl text-white opacity-20 absolute"></i>
-                </div>
-            </div>
-        </div>
-    </section>
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 25px;
+}
 
-    <section class="py-24 bg-off-white" id="speakers">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="section-title-underline text-4xl font-extrabold text-black-primary mb-16">Meet the Visionaries</h2>
-            
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-white rounded-xl shadow-2xl border-t-8 border-ted-red transform transition duration-500 hover:scale-[1.05] hover:shadow-3xl overflow-hidden group">
-                    <div class="h-56 bg-black-primary bg-cover bg-center group-hover:opacity-80 transition duration-300" style="background-image: url('https://via.placeholder.com/400x300/E0E0E0/333333?text=Speaker+A');"></div>
-                    <div class="p-5">
-                        <h3 class="text-xl font-bold text-black-primary mb-1">Dr. Anya Sharma</h3>
-                        <p class="text-ted-red font-semibold mb-3 text-sm uppercase">AI Ethics</p>
-                        <a href="#" class="text-black-secondary hover:text-ted-red text-lg transition"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                </div>
+.x-red {
+    color: var(--tedx-red);
+}
 
-                <div class="bg-white rounded-xl shadow-2xl border-t-8 border-ted-red transform transition duration-500 hover:scale-[1.05] hover:shadow-3xl overflow-hidden group">
-                    <div class="h-56 bg-black-primary bg-cover bg-center group-hover:opacity-80 transition duration-300" style="background-image: url('https://via.placeholder.com/400x300/E0E0E0/333333?text=Speaker+B');"></div>
-                    <div class="p-5">
-                        <h3 class="text-xl font-bold text-black-primary mb-1">Mark Chen</h3>
-                        <p class="text-ted-red font-semibold mb-3 text-sm uppercase">Sustainable Design</p>
-                        <a href="#" class="text-black-secondary hover:text-ted-red text-lg transition"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                </div>
-                
-                <div class="bg-white rounded-xl shadow-2xl border-t-8 border-ted-red transform transition duration-500 hover:scale-[1.05] hover:shadow-3xl overflow-hidden group">
-                    <div class="h-56 bg-black-primary bg-cover bg-center group-hover:opacity-80 transition duration-300" style="background-image: url('https://via.placeholder.com/400x300/E0E0E0/333333?text=Speaker+C');"></div>
-                    <div class="p-5">
-                        <h3 class="text-xl font-bold text-black-primary mb-1">Elena Petrova</h3>
-                        <p class="text-ted-red font-semibold mb-3 text-sm uppercase">Neuroscience</p>
-                        <a href="#" class="text-black-secondary hover:text-ted-red text-lg transition"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                </div>
+/* Reusable Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px;
+    border-radius: 5px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
 
-                <div class="bg-white rounded-xl shadow-2xl border-t-8 border-ted-red transform transition duration-500 hover:scale-[1.05] hover:shadow-3xl overflow-hidden group">
-                    <div class="h-56 bg-black-primary bg-cover bg-center group-hover:opacity-80 transition duration-300" style="background-image: url('https://via.placeholder.com/400x300/E0E0E0/333333?text=Speaker+D');"></div>
-                    <div class="p-5">
-                        <h3 class="text-xl font-bold text-black-primary mb-1">Dr. Amit Patel</h3>
-                        <p class="text-ted-red font-semibold mb-3 text-sm uppercase">Future of Energy</p>
-                        <a href="#" class="text-black-secondary hover:text-ted-red text-lg transition"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                </div>
-            </div>
-            <a href="#" class="mt-16 inline-flex items-center bg-black-primary text-white text-lg px-8 py-3 rounded-full font-bold shadow-xl hover:bg-ted-red transition duration-300">
-                See Full Lineup <i class="fas fa-arrow-right ml-3"></i>
-            </a>
-        </div>
-    </section>
+.btn-primary {
+    background-color: var(--tedx-red);
+    color: var(--white) !important;
+}
 
-    <section class="py-24 bg-black-primary text-white" id="schedule">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="section-title-underline text-4xl font-extrabold text-white mb-16">The Day's Journey</h2>
-            
-            <div class="w-full text-left space-y-4">
-                
-                <div class="bg-black-secondary p-6 rounded-xl border-l-4 border-ted-red shadow-2xl transition duration-300 hover:bg-black-secondary/80">
-                    <div class="flex justify-between items-center border-b border-gray-700 pb-2 mb-2">
-                        <span class="text-xl font-bold text-ted-red">09:00 AM</span>
-                        <span class="text-sm font-light uppercase tracking-wider text-gray-400">Main Stage</span>
-                    </div>
-                    <p class="text-2xl font-bold">Registration & Networking Coffee</p>
-                </div>
+.btn-primary:hover {
+    background-color: #c90022;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-light);
+}
 
-                <div class="bg-black-secondary p-6 rounded-xl border-l-4 border-ted-red shadow-2xl transition duration-300 hover:bg-black-secondary/80">
-                    <div class="flex justify-between items-center border-b border-gray-700 pb-2 mb-2">
-                        <span class="text-xl font-bold text-ted-red">10:00 AM</span>
-                        <span class="text-sm font-light uppercase tracking-wider text-gray-400">Session I: The Future Fabric</span>
-                    </div>
-                    <p class="text-2xl font-bold">Opening Ceremony & First Set of Talks</p>
-                </div>
+.btn-secondary {
+    background-color: var(--dark-primary);
+    color: var(--white) !important;
+}
 
-                <div class="bg-black-secondary p-6 rounded-xl border-l-4 border-ted-red shadow-2xl transition duration-300 hover:bg-black-secondary/80">
-                    <div class="flex justify-between items-center border-b border-gray-700 pb-2 mb-2">
-                        <span class="text-xl font-bold text-ted-red">01:00 PM</span>
-                        <span class="text-sm font-light uppercase tracking-wider text-gray-400">Networking & Break</span>
-                    </div>
-                    <p class="text-2xl font-bold">Lunch Break & Idea Exchange</p>
-                </div>
-                
-                <div class="bg-black-secondary p-6 rounded-xl border-l-4 border-ted-red shadow-2xl transition duration-300 hover:bg-black-secondary/80">
-                    <div class="flex justify-between items-center border-b border-gray-700 pb-2 mb-2">
-                        <span class="text-xl font-bold text-ted-red">02:30 PM</span>
-                        <span class="text-sm font-light uppercase tracking-wider text-gray-400">Session II: Human Potential</span>
-                    </div>
-                    <p class="text-2xl font-bold">Keynote Speakers & Live Performance</p>
-                </div>
-            </div>
-        </div>
-    </section>
+.btn-secondary:hover {
+    background-color: var(--dark-secondary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-light);
+}
 
-    <footer class="bg-off-white text-black-primary pt-20 pb-8 border-t-8 border-ted-red" id="contact">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-12 text-center md:text-left">
-                
-                <div>
-                    <a href="#" class="text-3xl font-extrabold text-black-primary">
-                        TED<span class="text-ted-red">x</span>VIT
-                    </a>
-                    <p class="text-sm text-black-secondary mt-3">An independently organized event, powered by volunteers and licensed by TED.</p>
-                </div>
+.btn-outline {
+    background-color: transparent;
+    color: var(--tedx-red) !important;
+    border: 2px solid var(--tedx-red);
+}
 
-                <div class="space-y-3">
-                    <h4 class="text-lg font-bold text-ted-red mb-3">Contact Us</h4>
-                    <p class="text-sm text-black-secondary"><i class="fas fa-envelope mr-2 text-ted-red"></i> <a href="mailto:info@tedxvit.com" class="hover:underline">info@tedxvit.com</a></p>
-                    <p class="text-sm text-black-secondary"><i class="fas fa-phone-alt mr-2 text-ted-red"></i> <a href="tel:+919324038187" class="hover:underline">+91 93240 38187</a></p>
-                    <p class="text-sm text-black-secondary"><i class="fas fa-map-marker-alt mr-2 text-ted-red"></i> VIT Chennai</p>
-                </div>
+.btn-outline:hover {
+    background-color: var(--tedx-red);
+    color: var(--white) !important;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-light);
+}
 
-                <div class="space-y-3">
-                    <h4 class="text-lg font-bold text-ted-red mb-3">Explore</h4>
-                    <ul class="space-y-1 text-sm">
-                        <li><a href="#about" class="text-black-secondary hover:text-ted-red transition">What is TEDx?</a></li>
-                        <li><a href="#speakers" class="text-black-secondary hover:text-ted-red transition">Our Speakers</a></li>
-                        <li><a href="#schedule" class="text-black-secondary hover:text-ted-red transition">Event Day</a></li>
-                    </ul>
-                </div>
+.large-btn {
+    padding: 15px 35px;
+    font-size: 1.1rem;
+}
 
-                <div class="space-y-3">
-                    <h4 class="text-lg font-bold text-ted-red mb-3">Connect</h4>
-                    <div class="flex justify-center md:justify-start space-x-6 text-2xl">
-                        <a href="#" class="text-black-secondary hover:text-ted-red transition"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-black-secondary hover:text-ted-red transition"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="text-black-secondary hover:text-ted-red transition"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="mt-16 border-t border-black-secondary pt-8 text-center text-sm text-black-secondary">
-            <p>&copy; 2025 TEDxVIT. All Rights Reserved.</p>
-        </div>
-    </footer>
+.btn i {
+    margin-left: 10px;
+}
 
-    <script>
-        // Mobile Menu Toggle
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
+/* Section Titles & Subtitles */
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--dark-primary);
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 15px;
+    display: inline-block;
+}
 
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Countdown Timer
-        const eventDate = new Date("2025-02-15T09:00:00").getTime(); // Set your target event date
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--tedx-red);
+    border-radius: 2px;
+}
 
-        const x = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = eventDate - now;
+.section-subtitle {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    color: var(--gray-medium);
+    margin-bottom: 60px;
+}
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+/* Header */
+.main-header {
+    background-color: var(--white);
+    box-shadow: var(--shadow-light);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("countdown").innerHTML = "<p class='text-2xl font-bold text-ted-red'>EVENT IS LIVE!</p>";
-            } else {
-                document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
-                document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
-                document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
-                document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
-            }
-        }, 1000);
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        // Close mobile menu on link click
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-    </script>
-</body>
-</html>
+.main-header .logo {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--dark-primary);
+}
+
+.nav-links a {
+    margin-left: 35px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.nav-links a:hover {
+    color: var(--tedx-red);
+}
+
+.menu-toggle {
+    font-size: 1.8rem;
+    color: var(--dark-primary);
+    cursor: pointer;
+    display: none; /* Hidden on desktop */
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    height: 90vh; /* Full viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    overflow: hidden;
+    background: var(--dark-primary); /* Fallback */
+}
+
+.hero-bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(26, 26, 26, 0.6) 100%);
+    background-image: url('https://via.placeholder.com/1920x1080/000000/FFFFFF?text=Inspiring+Stage+Background'); /* Placeholder background */
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.7); /* Darken the image */
+    z-index: 1;
+}
+
+/* If you use a real image tag, style it like this */
+/* .hero-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    filter: brightness(0.6);
+} */
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding-top: 50px; /* Space for sticky header */
+}
+
+.hero-content .event-tagline {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    color: var(--tedx-red);
+}
+
+.hero-content h1 {
+    font-family: var(--font-heading);
+    font-size: 5rem;
+    font-weight: 800;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.hero-content h2 {
+    font-family: var(--font-body);
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin-bottom: 40px;
+}
+
+/* Countdown Timer */
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.time-block {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100px;
+}
+
+.time-block span {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--tedx-red);
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+
+/* General Section Styling */
+.section {
+    padding: 100px 0;
+    text-align: center;
+}
+
+.section:nth-child(even) {
+    background-color: var(--white);
+}
+
+.lead-paragraph {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--dark-primary);
+    margin-bottom: 25px;
+}
+
+/* About Section */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    text-align: left;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.about-text p {
+    margin-bottom: 20px;
+}
+
+.about-visual {
+    background-color: var(--gray-light);
+    height: 350px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    color: var(--gray-medium);
+    font-size: 1.2rem;
+    background-image: url('https://via.placeholder.com/600x400/CCCCCC/666666?text=TEDx+Community+Image'); /* Placeholder */
+    background-size: cover;
+    background-position: center;
+}
+
+/* If using an actual img tag for about visual */
+/* .about-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+} */
+
+
+/* Speakers Section */
+.speakers-section {
+    background-color: var(--light-background);
+}
+
+.speaker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.speaker-card {
+    background-color: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.speaker-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-medium);
+}
+
+.speaker-photo-wrapper {
+    height: 250px;
+    width: 100%;
+    background-color: var(--gray-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    overflow: hidden;
+    background-image: url('https://via.placeholder.com/400x400/E0E0E0/666666?text=Speaker+Photo'); /* Placeholder */
+    background-size: cover;
+    background-position: center;
+}
+
+/* If using an actual img tag for speaker photo */
+/* .speaker-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.speaker-card:hover .speaker-photo {
+    transform: scale(1.05);
+} */
+
+.speaker-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--dark-primary);
+    margin-bottom: 10px;
+}
+
+.speaker-card .speaker-bio {
+    font-size: 0.95rem;
+    color: var(--gray-medium);
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+
+.social-links-small a {
+    font-size: 1.2rem;
+    margin: 0 8px;
+    color: var(--gray-medium);
+}
+
+.social-links-small a:hover {
+    color: var(--tedx-red);
+}
+
+
+/* Previous Events Timeline */
+.event-timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 80px auto;
+    padding: 0 20px;
+}
+
+.event-timeline::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: var(--tedx-red);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+}
+
+.timeline-item {
+    padding: 10px 0;
+    position: relative;
+    width: 50%;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-content {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+    position: relative;
+    text-align: left;
+    margin-left: 40px;
+    transition: transform 0.3s ease;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    margin-left: 0;
+    margin-right: 40px;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    right: -8px;
+    background-color: var(--tedx-red);
+    border: 3px solid var(--white);
+    top: 30px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.timeline-item:nth-child(even)::after {
+    left: -8px;
+}
+
+.timeline-content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    color: var(--dark-primary);
+    margin-bottom: 10px;
+}
+
+.timeline-content .theme {
+    font-style: italic;
+    color: var(--gray-medium);
+    margin-bottom: 10px;
+}
+
+.timeline-content .date {
+    display: block;
+    color: var(--gray-medium);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.timeline-content .date i {
+    margin-right: 5px;
+    color: var(--tedx-red);
+}
+
+/* Event Thumbnail Placeholder */
+/* .event-thumbnail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
+} */
+.timeline-content .view-talks-link {
+    font-weight: 600;
+    color: var(--tedx-red);
+}
+
+
+/* Call To Action Section */
+.call-to-action {
+    background-color: var(--tedx-red);
+    color: var(--white);
+    padding: 80px 0;
+}
+
+.call-to-action h2 {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.call-to-action p {
+    font-size: 1.3rem;
+    font-weight: 300;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* Contact Us Section */
+.contact-us {
+    background-color: var(--white);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+    margin-bottom: 60px;
+}
+
+.contact-info-block {
+    background-color: var(--light-background);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.contact-info-block:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.contact-info-block i {
+    font-size: 2.5rem;
+    color: var(--tedx-red);
+    margin-bottom: 20px;
+}
+
+.contact-info-block h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark-primary);
+    margin-bottom: 15px;
+}
+
+.contact-info-block p {
+    font-size: 0.95rem;
+    color: var(--gray-medium);
+    margin-bottom: 8px;
+}
+
+.contact-info-block p a {
+    color: var(--gray-medium);
+}
+
+.contact-info-block p a:hover {
+    color: var(--tedx-red);
+    text-decoration: underline;
+}
+
+.contact-form-map-placeholder {
+    height: 400px;
+    background-color: var(--light-background);
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    color: var(--gray-medium);
+    font-size: 1.5rem;
+    background-image: url('https://via.placeholder.com/1000x400/E0E0E0/666666?text=Map+or+Contact+Form'); /* Placeholder */
+    background-size: cover;
+    background-position: center;
+}
+
+
+/* Footer */
+.main-footer {
+    background-color: var(--dark-primary);
+    color: var(--white);
+    padding: 60px 0 20px;
+    font-size: 0.9rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+.footer-brand .logo {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 15px;
+    display: block;
+}
+
+.footer-brand .license {
+    color: var(--gray-light);
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.footer-links h4, .footer-social h4 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--tedx-red);
+    margin-bottom: 20px;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: var(--gray-light);
+    font-size: 0.95rem;
+}
+
+.footer-links a:hover {
+    color: var(--white);
+}
+
+.social-icons a {
+    font-size: 1.8rem;
+    margin-right: 20px;
+    color: var(--gray-light);
+    opacity: 0.8;
+}
+
+.social-icons a:hover {
+    color: var(--tedx-red);
+    opacity: 1;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--gray-light);
+    font-size: 0.85rem;
+}
+
+
+/* --- Responsive Design (for "graphics" on smaller screens) --- */
+@media (max-width: 992px) {
+    .header-content {
+        padding: 0 20px;
+    }
+    .nav-links {
+        display: none; /* Hide desktop nav by default */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        box-shadow: var(--shadow-medium);
+        padding: 20px 0;
+        border-top: 1px solid var(--light-background);
+    }
+    .nav-links.active {
+        display: flex; /* Show when active */
+    }
+    .nav-links a {
+        margin: 10px 25px;
+        text-align: center;
+    }
+    .menu-toggle {
+        display: block; /* Show hamburger icon */
+    }
+
+    .hero-content h1 {
+        font-size: 4rem;
+    }
+    .hero-content h2 {
+        font-size: 1.5rem;
+    }
+    .countdown-timer {
+        gap: 15px;
+    }
+    .time-block {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+        min-width: 80px;
+    }
+    .time-block span {
+        font-size: 2.2rem;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+    }
+    .section-subtitle {
+        font-size: 1rem;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .about-visual {
+        height: 300px;
+        order: -1; /* Image above text on mobile */
+    }
+
+    .speaker-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+    }
+
+    .event-timeline::before {
+        left: 20px; /* Align timeline to left on mobile */
+    }
+    .timeline-item {
+        width: 100%;
+        left: 0;
+        padding-left: 40px;
+    }
+    .timeline-item::after {
+        left: 15px;
+    }
+    .timeline-item:nth-child(even) .timeline-content {
+        margin-right: 0;
+    }
+    .timeline-item:nth-child(even)::after {
+        left: 15px;
+    }
+
+    .call-to-action h2 {
+        font-size: 2.2rem;
+    }
+    .call-to-action p {
+        font-size: 1.1rem;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .footer-brand .logo {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .footer-links ul {
+        padding-left: 0;
+    }
+    .footer-social .social-icons {
+        justify-content: center;
+        display: flex;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 3rem;
+        letter-spacing: 2px;
+    }
+    .hero-content h2 {
+        font-size: 1.2rem;
+    }
+    .countdown-timer {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .time-block {
+        min-width: unset;
+        width: 45%;
+        flex-grow: 1;
+    }
+    .time-block span {
+        font-size: 1.8rem;
+    }
+    .btn.large-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+    .lead-paragraph {
+        font-size: 1.1rem;
+    }
+    .speaker-card h3 {
+        font-size: 1.5rem;
+    }
+
+    .timeline-content {
+        padding: 20px;
+    }
+    .timeline-content h3 {
+        font-size: 1.4rem;
+    }
+    .timeline-content .theme {
+        font-size: 0.85rem;
+    }
+    .timeline-content .date {
+        font-size: 0.8rem;
+    }
+}
