@@ -3,269 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEDxVIT 2025 - Ideas Worth Spreading</title>
+    <title>TEDxVIT 2025 - Ignite. Explore. Connect.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* General Reset and Base Styles */
-        :root {
-            --red: #eb0028;
-            --dark: #1f1f1f;
-            --light-gray: #f7f7f7;
-            --white: #ffffff;
-        }
-
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: var(--dark);
-            background-color: var(--white);
-            line-height: 1.6;
-        }
-
-        /* Header and Navigation */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            background-color: var(--white);
-            border-bottom: 1px solid var(--light-gray);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: var(--red);
-            text-decoration: none;
-        }
-
-        .nav-links a {
-            margin-left: 25px;
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--red);
-        }
-
-        .tickets-button {
-            padding: 8px 15px;
-            background-color: var(--red);
-            color: var(--white);
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-            transition: opacity 0.3s;
-        }
-
-        .tickets-button:hover {
-            opacity: 0.9;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 100px 20px;
-            background-color: var(--light-gray);
-        }
-
-        .hero h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            color: var(--red);
-        }
-
-        .hero p {
-            font-size: 1.2em;
-            color: var(--dark);
-        }
-
-        /* General Section Styling */
-        .section {
-            padding: 60px 5%;
-            text-align: center;
-        }
-
-        .section h2 {
-            font-size: 2em;
-            color: var(--red);
-            margin-bottom: 40px;
-            border-bottom: 2px solid var(--light-gray);
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-
-        /* What is TEDx Section */
-        .what-is-tedx {
-            background-color: var(--white);
-            text-align: left;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        /* Previous Events Section */
-        .previous-events {
-            background-color: var(--light-gray);
-        }
-
-        .event-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .event-card {
-            background-color: var(--white);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            text-align: left;
-        }
-
-        .event-card h3 {
-            color: var(--dark);
-            margin-top: 0;
-        }
-
-        .event-card p {
-            color: #666;
-            font-size: 0.9em;
-        }
-
-        /* Contact Us Section */
-        .contact-us {
-            background-color: var(--white);
-        }
-
-        .contact-list {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            flex-wrap: wrap;
-        }
-
-        .contact-person {
-            text-align: left;
-            border: 1px solid var(--light-gray);
-            padding: 20px;
-            border-radius: 8px;
-            min-width: 250px;
-        }
-
-        .contact-person strong {
-            display: block;
-            font-size: 1.1em;
-            margin-bottom: 10px;
-            color: var(--red);
-        }
-
-        /* Footer */
-        .footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 40px 5%;
-            text-align: center;
-            font-size: 0.9em;
-        }
-
-        .social-links a {
-            color: var(--white);
-            font-size: 1.5em;
-            margin: 0 10px;
-            text-decoration: none;
-        }
-
-        .footer p {
-            margin-top: 20px;
-        }
+        /* CSS content will go here if you save it as a single HTML file */
+        /* To keep it professional, you would save it in a file named 'style.css' */
+        /* I will embed it here for a single-file delivery */
+        
+        /* [PASTE CSS BLOCK FROM SECTION 2 HERE IF CREATING A SINGLE FILE] */
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <a href="#" class="logo">TEDxVIT</a>
+    <header class="main-header">
+        <a href="#" class="logo">TED<span class="x-red">x</span>VIT</a>
         <nav class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Previous Events</a>
-            <a href="#">Contact Us</a>
-            <a href="#" class="tickets-button">Get Tickets</a>
+            <a href="#about">About</a>
+            <a href="#previous">Previous Events</a>
+            <a href="#contact">Contact</a>
+            <a href="#" class="button-ticket">Get Tickets</a>
         </nav>
-    </div>
+    </header>
 
-    <main>
-        <section class="hero">
-            <h1>TEDx VIT 2025</h1>
-            <p>Ideas Worth Spreading. Get ready for an unforgettable experience.</p>
-            <a href="#" class="tickets-button" style="margin-top: 20px; display: inline-block;">Reserve Your Spot</a>
-        </section>
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>TED<span class="x-red">x</span> VIT 2025</h1>
+            <h2>The Future Stage: Ideas Worth Spreading</h2>
+            <a href="#" class="button-ticket large-button">Register Now</a>
+        </div>
+    </section>
 
-        <section class="section what-is-tedx">
-            <h2>What is TEDx?</h2>
-            <p>In the spirit of ideas worth spreading, TED has created a program called TEDx. TEDx is a program of local, self-organized events that bring people together to share a TED-like experience. Our event is called TEDxVIT, where x = independently organized TED event.</p>
-            <p>At our TEDxVIT event, TED Talks video and live speakers will combine to spark deep discussion and connection in a small group. The TED Conference provides general guidance for the TEDx program, but individual TEDx events, including ours, are self-organized.</p>
-        </section>
+    <section class="section about-tedx" id="about">
+        <div class="container">
+            <h2>What is TED<span class="x-red">x</span>?</h2>
+            <p class="description">In the spirit of **ideas worth spreading**, TED has created a program called TEDx. TEDx is a program of local, self-organized events that bring people together to share a TED-like experience.</p>
+            <p>Our event is called **TEDxVIT**, where $\text{x} = \text{independently organized TED event}$. At our event, TED Talks videos and live speakers will combine to spark deep discussion and connection in a small group. The TED Conference provides general guidance for the TEDx program, but individual TEDx events, including ours, are self-organized.</p>
+        </div>
+    </section>
 
-        <section class="section previous-events">
+    <section class="section previous-events" id="previous">
+        <div class="container">
             <h2>Previous Events</h2>
             <div class="event-grid">
                 <div class="event-card">
+                    <div class="card-visual-placeholder"></div>
                     <h3>TEDx VIT 2024</h3>
-                    <p>Theme: Nurture The Future</p>
-                    <p>January 2024</p>
+                    <p class="theme">Theme: **Nurture The Future**</p>
+                    <span class="date"><i class="fas fa-calendar-alt"></i> January 2024</span>
                 </div>
                 <div class="event-card">
+                    <div class="card-visual-placeholder"></div>
                     <h3>TEDx VIT 2021</h3>
-                    <p>Theme: Epiphany</p>
-                    <p>May 2021</p>
+                    <p class="theme">Theme: **Epiphany**</p>
+                    <span class="date"><i class="fas fa-calendar-alt"></i> May 2021</span>
                 </div>
                 <div class="event-card">
+                    <div class="card-visual-placeholder"></div>
                     <h3>TEDx VIT 2019</h3>
-                    <p>Theme: Ideas Worth Spreading</p>
-                    <p>March 2019</p>
+                    <p class="theme">Theme: **Ideas Worth Spreading**</p>
+                    <span class="date"><i class="fas fa-calendar-alt"></i> March 2019</span>
                 </div>
                 <div class="event-card">
+                    <div class="card-visual-placeholder"></div>
                     <h3>TEDx VIT 2018</h3>
-                    <p>Theme: Understanding The Box</p>
-                    <p>Jan 2018</p>
+                    <p class="theme">Theme: **Understanding The Box**</p>
+                    <span class="date"><i class="fas fa-calendar-alt"></i> Jan 2018</span>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="section contact-us">
-            <h2>Contact Us</h2>
+    <section class="section contact-us" id="contact">
+        <div class="container">
+            <h2>Connect With Us</h2>
             <div class="contact-list">
                 <div class="contact-person">
+                    <i class="fas fa-user-tie"></i>
                     <strong>Sarthak Tomar</strong>
-                    <p>📧 sarthak@tedxvit.com</p>
-                    <p>📞 +91 93240 38187</p>
+                    <a href="mailto:sarthak@tedxvit.com"><i class="fas fa-envelope"></i> sarthak@tedxvit.com</a>
+                    <a href="tel:+919324038187"><i class="fas fa-phone"></i> +91 93240 38187</a>
                 </div>
                 <div class="contact-person">
+                    <i class="fas fa-user-tie"></i>
                     <strong>Amaan Dhamaskar</strong>
-                    <p>📧 amaan@tedxvit.com</p>
-                    <p>📞 +91 88793 79763</p>
+                    <a href="mailto:amaan@tedxvit.com"><i class="fas fa-envelope"></i> amaan@tedxvit.com</a>
+                    <a href="tel:+918879379763"><i class="fas fa-phone"></i> +91 88793 79763</a>
                 </div>
             </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="social-links">
-            <a href="#">Instagram</a>
-            <a href="#">Twitter</a>
-            <a href="#">LinkedIn</a>
-            <a href="#">Facebook</a>
         </div>
-        <p>This independent TEDx event is operated under license from TED.</p>
-        <p>&copy; TEDxVIT. All Rights Reserved.</p>
+    </section>
+
+    <footer class="main-footer">
+        <div class="social-links">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
+        <p class="license">This independent TEDx event is operated under license from TED.</p>
+        <p>&copy; 2025 TEDxVIT. All Rights Reserved.</p>
     </footer>
 
 </body>
