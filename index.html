@@ -6,12 +6,325 @@
     <title>TEDxVIT 2025 - Ignite. Explore. Connect.</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
-        /* CSS content will go here if you save it as a single HTML file */
-        /* To keep it professional, you would save it in a file named 'style.css' */
-        /* I will embed it here for a single-file delivery */
+        /* Variables for easy theme switching */
+        :root {
+            --tedx-red: #eb0028;
+            --dark-primary: #111111;
+            --light-background: #f8f8f8;
+            --text-color: #333333;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Base Reset and Typography */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-background);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: color 0.3s;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .x-red {
+            color: var(--tedx-red);
+        }
+
+        /* 1. Header and Navigation */
+        .main-header {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-primary);
+        }
+
+        .nav-links a {
+            margin-left: 30px;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--tedx-red);
+        }
+
+        /* Professional Buttons */
+        .button-ticket {
+            background-color: var(--tedx-red);
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+
+        .button-ticket:hover {
+            background-color: #c90022;
+            transform: translateY(-1px);
+        }
+
+        .large-button {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+        }
+
+        /* 2. Hero Section */
+        .hero-section {
+            background-color: var(--dark-primary);
+            color: white;
+            text-align: center;
+            padding: 150px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Simulate the TEDx stage light/backdrop graphic */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 10%, rgba(255, 0, 0, 0.3) 0%, rgba(17, 17, 17, 1) 70%);
+            opacity: 0.8;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .hero-content h2 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        /* General Section Styling */
+        .section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .section:nth-child(even) {
+            background-color: white;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            border-bottom: 3px solid var(--tedx-red);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        /* 3. What is TEDx Section */
+        .about-tedx {
+            text-align: left;
+        }
+
+        .about-tedx .description {
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        /* 4. Previous Events Grid */
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .event-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            text-align: left;
+            transition: transform 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-visual-placeholder {
+            height: 150px;
+            background-color: #e6e6e6;
+            background-image: linear-gradient(135deg, #f0f0f0 25%, #d9d9d9 25%, #d9d9d9 50%, #f0f0f0 50%, #f0f0f0 75%, #d9d9d9 75%, #d9d9d9 100%);
+            background-size: 20px 20px;
+        }
+
+        .event-card h3 {
+            padding: 15px 20px 5px;
+            font-size: 1.4rem;
+            color: var(--tedx-red);
+        }
+
+        .event-card .theme {
+            padding: 0 20px;
+            color: var(--text-color);
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        .event-card .date {
+            display: block;
+            padding: 10px 20px 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .event-card .date i {
+            margin-right: 5px;
+            color: var(--tedx-red);
+        }
+
+        /* 5. Contact Us */
+        .contact-us {
+            background-color: var(--light-background);
+        }
         
-        /* [PASTE CSS BLOCK FROM SECTION 2 HERE IF CREATING A SINGLE FILE] */
+        .contact-list {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .contact-person {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            text-align: left;
+            width: 350px;
+        }
+
+        .contact-person i {
+            font-size: 2rem;
+            color: var(--tedx-red);
+            margin-bottom: 15px;
+        }
+
+        .contact-person strong {
+            display: block;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark-primary);
+        }
+
+        .contact-person a {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .contact-person a i {
+            font-size: 1rem;
+            margin-right: 10px;
+            color: var(--tedx-red);
+        }
+
+        .contact-person a:hover {
+            color: var(--tedx-red);
+        }
+
+        /* 6. Footer */
+        .main-footer {
+            background-color: var(--dark-primary);
+            color: #ccc;
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+            margin: 0 15px;
+            color: white;
+            opacity: 0.7;
+        }
+
+        .social-links a:hover {
+            opacity: 1;
+            color: var(--tedx-red);
+        }
+
+        .main-footer p {
+            margin-top: 15px;
+        }
+
+        /* --- Professional Responsive Design --- */
+        @media (max-width: 900px) {
+            .nav-links a:not(.button-ticket) {
+                margin-left: 15px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            
+            .hero-content h2 {
+                font-size: 1.2rem;
+            }
+
+            .main-header {
+                padding: 10px 20px;
+            }
+
+            .nav-links a:not(.button-ticket) {
+                display: none; /* Hide standard links on small screens for cleaner mobile navigation */
+            }
+
+            .contact-person {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
