@@ -1,306 +1,1090 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEDxVIT 2025 | Breakthrough: Ideas Shaping Tomorrow</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    </head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tejeswar N B — ECE Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,400;12..96,500;12..96,700;12..96,800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#08080c;
+  --paper:#f4f0e8;
+  --paper2:#ede8da;
+  --card:#ffffff;
+  --accent:#e8400c;
+  --accent2:#1a1a2e;
+  --blue:#0047ff;
+  --gold:#c9a84c;
+  --muted:#6b6560;
+  --border:rgba(8,8,12,0.1);
+  --display:'Bricolage Grotesque',sans-serif;
+  --mono:'Space Mono',monospace;
+  --body:'DM Sans',sans-serif;
+  --r8:8px; --r16:16px; --r24:24px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:var(--body);
+  background:var(--paper);
+  color:var(--ink);
+  overflow-x:hidden;
+  cursor:none;
+}
 
+/* ── CUSTOM CURSOR ── */
+#cur{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;mix-blend-mode:multiply}
+#cur .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);position:absolute;transform:translate(-50%,-50%);transition:transform .15s}
+#cur .ring{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--accent);position:absolute;transform:translate(-50%,-50%);transition:width .3s,height .3s,opacity .3s,border-color .3s}
+body:has(a:hover) #cur .ring,
+body:has(button:hover) #cur .ring{width:60px;height:60px;opacity:.5}
+
+/* ── LOADER ── */
+#loader{
+  position:fixed;inset:0;z-index:10000;
+  background:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:24px;
+}
+.loader-text{
+  font-family:var(--display);font-size:clamp(2rem,6vw,5rem);
+  font-weight:800;color:var(--paper);letter-spacing:-.04em;
+  overflow:hidden;
+}
+.loader-text span{display:inline-block;transform:translateY(100%);animation:slideUp .8s cubic-bezier(.16,1,.3,1) forwards}
+.loader-text span:nth-child(2){animation-delay:.1s}
+.loader-text span:nth-child(3){animation-delay:.2s}
+.loader-bar{width:200px;height:2px;background:rgba(255,255,255,.15);border-radius:2px;overflow:hidden}
+.loader-fill{height:100%;background:var(--accent);width:0;animation:fill 1.4s .3s cubic-bezier(.16,1,.3,1) forwards}
+#loader.done{animation:loaderOut .6s .2s cubic-bezier(.7,0,.3,1) forwards}
+@keyframes slideUp{to{transform:translateY(0)}}
+@keyframes fill{to{width:100%}}
+@keyframes loaderOut{to{transform:translateY(-100%)}}
+
+/* ── NOISE TEXTURE ── */
+body::after{
+  content:'';position:fixed;inset:0;z-index:1;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+  pointer-events:none;opacity:.6;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;width:100%;z-index:1000;
+  padding:20px 0;transition:all .4s ease;
+}
+nav.scrolled{
+  background:rgba(244,240,232,.92);
+  backdrop-filter:blur(20px);
+  padding:14px 0;
+  border-bottom:1px solid var(--border);
+}
+.nav-wrap{max-width:1300px;margin:0 auto;padding:0 clamp(20px,5vw,60px);display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--display);font-size:1.3rem;font-weight:800;letter-spacing:-.04em;text-decoration:none;color:var(--ink);cursor:none}
+.nav-logo em{color:var(--accent);font-style:normal}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:.72rem;text-decoration:none;color:var(--muted);transition:color .3s;cursor:none;letter-spacing:.02em}
+.nav-links a:hover{color:var(--accent)}
+.nav-badge{
+  font-family:var(--mono);font-size:.7rem;padding:7px 16px;
+  border-radius:100px;border:1.5px solid var(--ink);
+  text-decoration:none;color:var(--ink);transition:all .3s;cursor:none;
+}
+.nav-badge:hover{background:var(--ink);color:var(--paper)}
+
+/* ── SECTIONS ── */
+.wrap{max-width:1300px;margin:0 auto;padding:0 clamp(20px,5vw,60px);position:relative;z-index:2}
+section{position:relative;z-index:2}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 80px;overflow:hidden}
+.hero-inner{display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:end;width:100%}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:.75rem;letter-spacing:.2em;
+  color:var(--muted);text-transform:uppercase;margin-bottom:2rem;
+  display:flex;align-items:center;gap:12px;
+  opacity:0;animation:fadeUp .8s .4s cubic-bezier(.16,1,.3,1) forwards;
+}
+.hero-eyebrow::before{content:'';width:40px;height:1px;background:var(--muted)}
+.hero-headline{
+  font-family:var(--display);
+  font-size:clamp(4rem,9vw,9rem);
+  font-weight:800;line-height:.92;letter-spacing:-.05em;
+  color:var(--ink);
+  opacity:0;animation:fadeUp .9s .55s cubic-bezier(.16,1,.3,1) forwards;
+}
+.hero-headline .accent{color:var(--accent);display:block}
+.hero-headline .outline{
+  -webkit-text-stroke:2px var(--ink);
+  color:transparent;display:block;
+}
+.hero-sub{
+  margin-top:2rem;font-size:1.05rem;color:var(--muted);max-width:500px;line-height:1.8;
+  opacity:0;animation:fadeUp .8s .7s cubic-bezier(.16,1,.3,1) forwards;
+}
+.hero-actions{
+  margin-top:2.5rem;display:flex;gap:1rem;align-items:center;flex-wrap:wrap;
+  opacity:0;animation:fadeUp .8s .85s cubic-bezier(.16,1,.3,1) forwards;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 28px;border-radius:100px;
+  font-family:var(--mono);font-size:.78rem;text-decoration:none;
+  transition:all .35s cubic-bezier(.16,1,.3,1);cursor:none;letter-spacing:.03em;
+  border:1.5px solid transparent;
+}
+.btn-filled{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn-filled:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-3px)}
+.btn-outline{border-color:var(--border);color:var(--ink);background:transparent}
+.btn-outline:hover{border-color:var(--ink);transform:translateY(-3px)}
+.hero-stats{
+  display:grid;grid-template-columns:1fr;gap:1.5rem;align-self:end;
+  opacity:0;animation:fadeLeft .8s .6s cubic-bezier(.16,1,.3,1) forwards;
+  padding-bottom:8px;
+}
+.stat{border-top:1px solid var(--border);padding-top:1rem;min-width:140px}
+.stat-n{font-family:var(--display);font-size:2.8rem;font-weight:800;line-height:1;letter-spacing:-.04em}
+.stat-n span{color:var(--accent)}
+.stat-l{font-family:var(--mono);font-size:.65rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
+
+/* Marquee */
+.marquee-wrap{
+  overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:16px 0;margin:0;background:var(--ink);position:relative;z-index:2;
+}
+.marquee-track{
+  display:flex;gap:3rem;white-space:nowrap;
+  animation:marquee 25s linear infinite;
+}
+.marquee-item{
+  font-family:var(--display);font-size:1rem;font-weight:700;
+  color:var(--paper);letter-spacing:.05em;text-transform:uppercase;
+  flex-shrink:0;display:flex;align-items:center;gap:1rem;
+}
+.marquee-item .dot{color:var(--accent)}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* ── ABOUT ── */
+.about-section{padding:120px 0}
+.about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:6rem;align-items:start}
+.sec-label{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:1.2rem;display:flex;align-items:center;gap:8px;
+}
+.sec-label::before{content:'';width:24px;height:1.5px;background:var(--accent)}
+.sec-title{
+  font-family:var(--display);font-size:clamp(2.2rem,4vw,3.5rem);font-weight:800;
+  line-height:1.05;letter-spacing:-.04em;color:var(--ink);margin-bottom:2rem;
+}
+.about-para{font-size:.97rem;color:var(--muted);line-height:1.9;margin-bottom:1.2rem}
+.cgpa-block{
+  background:var(--ink);color:var(--paper);
+  border-radius:var(--r24);padding:2.5rem;
+  display:flex;align-items:center;gap:2rem;margin:2.5rem 0;
+  position:relative;overflow:hidden;
+}
+.cgpa-block::before{
+  content:'';position:absolute;top:-40px;right:-40px;
+  width:180px;height:180px;border-radius:50%;
+  background:radial-gradient(circle,rgba(232,64,12,.25),transparent 70%);
+}
+.cgpa-num{font-family:var(--display);font-size:4.5rem;font-weight:800;line-height:1;color:var(--accent)}
+.cgpa-info h4{font-size:1.1rem;font-weight:700;font-family:var(--display);margin-bottom:4px}
+.cgpa-info p{font-size:.85rem;color:rgba(244,240,232,.6)}
+.stack-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:1.5rem}
+.pill{
+  font-family:var(--mono);font-size:.68rem;padding:7px 14px;
+  border-radius:100px;border:1px solid var(--border);
+  color:var(--muted);background:var(--card);
+  transition:all .3s;cursor:default;
+}
+.pill:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);transform:translateY(-2px)}
+.pill.hot{background:rgba(232,64,12,.08);border-color:rgba(232,64,12,.3);color:var(--accent)}
+.info-list{display:flex;flex-direction:column;gap:.85rem;margin-top:2rem}
+.info-row{
+  display:flex;align-items:center;gap:14px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r16);padding:14px 18px;
+  transition:all .35s cubic-bezier(.16,1,.3,1);
+}
+.info-row:hover{transform:translateX(8px);border-color:rgba(8,8,12,.2)}
+.info-icon{width:38px;height:38px;border-radius:10px;background:rgba(232,64,12,.08);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.info-text h5{font-family:var(--mono);font-size:.65rem;color:var(--muted);letter-spacing:.05em;margin-bottom:2px}
+.info-text p{font-size:.88rem;color:var(--ink)}
+
+/* ── EXPERIENCE ── */
+.experience-section{padding:80px 0 120px;background:var(--paper2)}
+.exp-grid{display:flex;flex-direction:column;gap:1.5rem;margin-top:3rem}
+.exp-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r24);
+  padding:2.5rem;transition:all .4s cubic-bezier(.16,1,.3,1);
+  position:relative;overflow:hidden;
+}
+.exp-card::after{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:linear-gradient(180deg,var(--accent),var(--blue));
+  transform:scaleY(0);transform-origin:top;
+  transition:transform .4s cubic-bezier(.16,1,.3,1);
+}
+.exp-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(8,8,12,.08)}
+.exp-card:hover::after{transform:scaleY(1)}
+.exp-card.featured{background:var(--ink);color:var(--paper)}
+.exp-card.featured .exp-org{color:var(--accent)}
+.exp-card.featured .exp-role{color:var(--paper)}
+.exp-card.featured .exp-period{background:rgba(244,240,232,.1);color:rgba(244,240,232,.7)}
+.exp-card.featured .exp-body{color:rgba(244,240,232,.65)}
+.exp-card.featured .exp-point{color:rgba(244,240,232,.8)}
+.exp-card.featured .exp-point::before{color:var(--accent)}
+.exp-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
+.exp-role{font-family:var(--display);font-size:1.25rem;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+.exp-org{font-family:var(--mono);font-size:.75rem;color:var(--accent);margin-top:4px;letter-spacing:.02em}
+.exp-period{
+  font-family:var(--mono);font-size:.68rem;
+  background:rgba(8,8,12,.06);padding:6px 14px;border-radius:100px;
+  color:var(--muted);white-space:nowrap;align-self:flex-start;
+}
+.exp-body{font-size:.9rem;color:var(--muted);line-height:1.8;margin-bottom:1.2rem}
+.exp-points{display:flex;flex-direction:column;gap:.6rem}
+.exp-point{font-size:.87rem;color:var(--ink);display:flex;gap:10px;align-items:flex-start}
+.exp-point::before{content:'→';color:var(--accent);flex-shrink:0;font-weight:700}
+/* IITM badge */
+.iitm-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,var(--gold),#e8c66a);
+  color:#3a2a00;font-family:var(--mono);font-size:.68rem;
+  padding:5px 12px;border-radius:100px;font-weight:700;
+  margin-bottom:.8rem;letter-spacing:.04em;
+}
+
+/* ── PROJECTS ── */
+.projects-section{padding:80px 0 120px}
+.projects-filter{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:3rem}
+.filter-btn{
+  font-family:var(--mono);font-size:.68rem;padding:8px 16px;border-radius:100px;
+  border:1.5px solid var(--border);background:transparent;color:var(--muted);
+  cursor:none;transition:all .3s;
+}
+.filter-btn.active,.filter-btn:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+.proj-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r24);
+  padding:2rem;transition:all .4s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden;
+  cursor:default;
+}
+.proj-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(232,64,12,.06) 0%,transparent 60%);
+  opacity:0;transition:opacity .4s;
+}
+.proj-card:hover{transform:translateY(-8px);box-shadow:0 30px 80px rgba(8,8,12,.1)}
+.proj-card:hover::before{opacity:1}
+.proj-card.span2{grid-column:span 2}
+.proj-num{font-family:var(--mono);font-size:5rem;font-weight:700;color:rgba(8,8,12,.04);position:absolute;top:.5rem;right:1rem;line-height:1}
+.proj-icon{width:48px;height:48px;border-radius:12px;background:rgba(8,8,12,.05);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1.2rem;transition:transform .4s}
+.proj-card:hover .proj-icon{transform:rotate(8deg) scale(1.1)}
+.proj-card h3{font-family:var(--display);font-size:1.05rem;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:.6rem;line-height:1.35}
+.proj-card p{font-size:.85rem;color:var(--muted);line-height:1.75;margin-bottom:1.2rem}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-family:var(--mono);font-size:.62rem;padding:4px 10px;border-radius:4px;background:rgba(8,8,12,.04);border:1px solid var(--border);color:var(--muted)}
+.proj-card.dark{background:var(--ink);border-color:transparent}
+.proj-card.dark h3{color:var(--paper)}
+.proj-card.dark p{color:rgba(244,240,232,.55)}
+.proj-card.dark .proj-num{color:rgba(244,240,232,.04)}
+.proj-card.dark .proj-icon{background:rgba(232,64,12,.15)}
+.proj-card.dark .tag{background:rgba(244,240,232,.06);border-color:rgba(244,240,232,.1);color:rgba(244,240,232,.5)}
+.wip-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(232,64,12,.1);color:var(--accent);
+  font-family:var(--mono);font-size:.6rem;padding:3px 9px;border-radius:100px;
+  margin-bottom:.6rem;border:1px solid rgba(232,64,12,.2);
+}
+.wip-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);animation:blink 1.2s ease-in-out infinite}
+
+/* ── PUBLICATIONS ── */
+.pub-section{padding:80px 0 120px;background:var(--paper2)}
+.pub-grid{display:flex;flex-direction:column;gap:1.5rem;margin-top:3rem}
+.pub-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r24);
+  padding:2.5rem;transition:all .4s cubic-bezier(.16,1,.3,1);
+  display:grid;grid-template-columns:auto 1fr;gap:2.5rem;align-items:start;
+}
+.pub-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(8,8,12,.07)}
+.pub-badge{
+  width:72px;height:72px;border-radius:50%;
+  background:var(--ink);display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-size:1.1rem;font-weight:800;color:var(--paper);
+  flex-shrink:0;
+}
+.pub-badge.award{background:linear-gradient(135deg,var(--gold),#e8c66a);color:#3a2a00}
+.pub-conf{font-family:var(--mono);font-size:.68rem;color:var(--accent);letter-spacing:.05em;margin-bottom:.6rem}
+.pub-title{font-family:var(--display);font-size:1.2rem;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:.8rem;line-height:1.4}
+.pub-desc{font-size:.88rem;color:var(--muted);line-height:1.8}
+
+/* ── ACHIEVEMENTS ── */
+.achieve-section{padding:80px 0 120px}
+.achieve-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;margin-top:3rem}
+.achieve-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r24);
+  padding:2rem;transition:all .4s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden;
+}
+.achieve-card:hover{transform:translateY(-6px);box-shadow:0 24px 64px rgba(8,8,12,.09)}
+.achieve-icon{font-size:2rem;margin-bottom:1rem;display:block}
+.achieve-card h3{font-family:var(--display);font-size:1rem;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:.5rem}
+.achieve-card p{font-size:.84rem;color:var(--muted);line-height:1.7}
+.achieve-card.accent-card{background:var(--accent);border-color:transparent}
+.achieve-card.accent-card h3,.achieve-card.accent-card p{color:var(--paper)}
+
+/* ── SKILLS ── */
+.skills-section{padding:80px 0 120px;background:var(--ink)}
+.skills-section .sec-label{color:var(--accent)}
+.skills-section .sec-title{color:var(--paper)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-top:3rem}
+.skill-group{
+  background:rgba(244,240,232,.04);border:1px solid rgba(244,240,232,.08);
+  border-radius:var(--r24);padding:2rem;
+  transition:all .4s cubic-bezier(.16,1,.3,1);
+}
+.skill-group:hover{background:rgba(244,240,232,.07);transform:translateY(-4px)}
+.sg-title{font-family:var(--mono);font-size:.7rem;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.2rem;display:flex;align-items:center;gap:8px}
+.sg-pills{display:flex;flex-wrap:wrap;gap:7px}
+.sg-pill{
+  font-family:var(--mono);font-size:.67rem;padding:6px 12px;border-radius:6px;
+  background:rgba(244,240,232,.06);border:1px solid rgba(244,240,232,.1);
+  color:rgba(244,240,232,.7);transition:all .3s;cursor:default;
+}
+.sg-pill:hover{background:rgba(232,64,12,.2);border-color:rgba(232,64,12,.4);color:var(--paper)}
+
+/* ── CONTACT ── */
+.contact-section{padding:80px 0 120px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.contact-cta{
+  font-family:var(--display);font-size:clamp(2.5rem,5vw,4.5rem);
+  font-weight:800;line-height:1.05;letter-spacing:-.04em;
+  color:var(--ink);margin-bottom:2rem;
+}
+.contact-cta em{color:var(--accent);font-style:normal}
+.contact-links{display:flex;flex-direction:column;gap:1rem;margin-top:2.5rem}
+.clink{
+  display:flex;align-items:center;gap:16px;text-decoration:none;
+  transition:transform .35s cubic-bezier(.16,1,.3,1);
+}
+.clink:hover{transform:translateX(10px)}
+.clink-icon{width:48px;height:48px;border-radius:12px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all .3s;flex-shrink:0}
+.clink:hover .clink-icon{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.clink-text h5{font-family:var(--mono);font-size:.65rem;color:var(--muted);letter-spacing:.05em;margin-bottom:2px}
+.clink-text p{font-size:.88rem;color:var(--ink)}
+.contact-form{background:var(--card);border:1px solid var(--border);border-radius:var(--r24);padding:2.5rem;position:relative;overflow:hidden}
+.contact-form::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--blue))}
+.form-field{margin-bottom:1.2rem}
+.form-field label{font-family:var(--mono);font-size:.67rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:6px}
+.form-input{
+  width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:var(--r8);
+  font-family:var(--body);font-size:.92rem;color:var(--ink);
+  background:var(--paper);outline:none;transition:border-color .3s;
+}
+.form-input:focus{border-color:var(--accent)}
+textarea.form-input{min-height:120px;resize:vertical}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.submit-btn{
+  width:100%;padding:14px;border:none;border-radius:100px;
+  background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:.8rem;
+  cursor:none;transition:all .35s cubic-bezier(.16,1,.3,1);letter-spacing:.05em;
+}
+.submit-btn:hover{background:var(--accent);transform:translateY(-3px)}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--ink);border-top:1px solid rgba(244,240,232,.08);
+  padding:2.5rem 0;
+}
+.foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.foot-copy{font-family:var(--mono);font-size:.72rem;color:rgba(244,240,232,.4)}
+.foot-links{display:flex;gap:2rem}
+.foot-links a{font-family:var(--mono);font-size:.72rem;color:rgba(244,240,232,.4);text-decoration:none;transition:color .3s;cursor:none}
+.foot-links a:hover{color:var(--accent)}
+
+/* ── SCROLL TOP ── */
+#scrollTop{
+  position:fixed;bottom:2rem;right:2rem;z-index:100;
+  width:46px;height:46px;border-radius:50%;
+  background:var(--ink);border:none;color:var(--paper);
+  font-size:1rem;cursor:none;opacity:0;transform:translateY(20px);
+  transition:all .4s cubic-bezier(.16,1,.3,1);
+}
+#scrollTop.show{opacity:1;transform:translateY(0)}
+#scrollTop:hover{background:var(--accent);transform:translateY(-4px)}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.1s}
+.reveal-d2{transition-delay:.2s}
+.reveal-d3{transition-delay:.3s}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeLeft{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+/* ── SPLIT TEXT ANIMATION ── */
+.split-word{overflow:hidden;display:inline-block}
+.split-inner{display:inline-block;transform:translateY(105%);animation:slideUp .9s cubic-bezier(.16,1,.3,1) forwards}
+
+/* ── HORIZONTAL SCROLL SECTION ── */
+.h-scroll-section{padding:80px 0;overflow:hidden}
+.h-scroll-track{
+  display:flex;gap:1.5rem;
+  animation:hscroll 30s linear infinite;
+  width:max-content;
+}
+.h-scroll-track:hover{animation-play-state:paused}
+.interest-chip{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r24);
+  padding:2rem;flex-shrink:0;width:280px;
+  transition:all .4s cubic-bezier(.16,1,.3,1);
+}
+.interest-chip:hover{transform:translateY(-8px) scale(1.02);border-color:var(--accent);box-shadow:0 20px 60px rgba(8,8,12,.1)}
+.interest-chip .ic-icon{font-size:2rem;margin-bottom:.8rem;display:block}
+.interest-chip h3{font-family:var(--display);font-size:1rem;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:.5rem}
+.interest-chip p{font-size:.82rem;color:var(--muted);line-height:1.7}
+@keyframes hscroll{to{transform:translateX(-50%)}}
+
+/* ── EDUCATION ── */
+.education-section{padding:80px 0 120px}
+.edu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.edu-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r24);
+  padding:2rem;transition:all .4s cubic-bezier(.16,1,.3,1);
+}
+.edu-card:hover{transform:translateY(-6px);box-shadow:0 24px 64px rgba(8,8,12,.08)}
+.edu-year{
+  font-family:var(--mono);font-size:.68rem;color:var(--accent);
+  background:rgba(232,64,12,.08);border:1px solid rgba(232,64,12,.2);
+  padding:4px 12px;border-radius:100px;display:inline-block;
+  letter-spacing:.08em;margin-bottom:1rem;
+}
+.edu-card h3{font-family:var(--display);font-size:.98rem;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:.4rem}
+.edu-card h4{font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:1.2rem}
+.edu-grade{font-family:var(--display);font-size:2.5rem;font-weight:800;letter-spacing:-.04em;color:var(--accent)}
+.edu-grade-lbl{font-family:var(--mono);font-size:.65rem;color:var(--muted);margin-top:3px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .hero-inner,.about-grid,.contact-grid{grid-template-columns:1fr}
+  .hero-stats{grid-template-columns:repeat(4,1fr)}
+  .edu-grid{grid-template-columns:1fr 1fr}
+  .pub-card{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .nav-links,.nav-badge{display:none}
+  .edu-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .proj-card.span2{grid-column:span 1}
+}
+</style>
+</head>
 <body>
-    <header class="main-header">
-        <div class="container header-content">
-            <a href="#" class="logo">TED<span class="x-red">x</span>VIT</a>
-            
-            <nav class="nav-links">
-                <a href="#about">About</a>
-                <a href="#speakers">Speakers</a>
-                <a href="#previous-events">Past Events</a>
-                <a href="#contact">Contact</a>
-                <a href="#" class="btn btn-primary">Get Tickets</a>
-            </nav>
-            
-            <div class="menu-toggle" id="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-text">
+    <span>T</span><span>.</span><span>NB</span>
+  </div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<!-- CURSOR -->
+<div id="cur"><div class="dot"></div><div class="ring"></div></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-wrap">
+    <a href="#home" class="nav-logo">T<em>.</em>NB</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="mailto:tejeswarbalasubramanian@gmail.com" class="nav-badge">Get in touch →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">Electronics & Communication Engineer</div>
+        <h1 class="hero-headline">
+          <span>Tejeswar</span>
+          <span class="outline">N&nbsp;B</span>
+        </h1>
+        <p class="hero-sub">
+          Aspiring ECE engineer with a 9.64 CGPA — specialising in RF systems, wireless communications, 
+          embedded design & signal processing. IEEE-published. IIT Madras fellow.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-filled">View Projects ↗</a>
+          <a href="#contact" class="btn btn-outline">Let's Connect</a>
         </div>
-    </header>
-
-    <section class="hero-section">
-        <div class="hero-bg-overlay"></div> 
-        
-        <div class="container hero-content">
-            <p class="event-tagline">ANNUAL EVENT 2025</p>
-            <h1>BREAKTHROUGH</h1>
-            <h2>The Future Stage: Ideas Shaping Tomorrow</h2>
-            
-            <div class="countdown-timer" id="countdown">
-                <div class="time-block"><span id="days">00</span>Days</div>
-                <div class="time-block"><span id="hours">00</span>Hours</div>
-                <div class="time-block"><span id="minutes">00</span>Mins</div>
-                <div class="time-block"><span id="seconds">00</span>Secs</div>
-            </div>
-
-            <a href="#" class="btn btn-primary large-btn">
-                Register Now <i class="fas fa-ticket-alt"></i>
-            </a>
-            <a href="#speakers" class="btn btn-outline large-btn" style="margin-left: 15px;">
-                Meet Speakers <i class="fas fa-arrow-right"></i>
-            </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-n"><span id="c1">0</span>.64</div>
+          <div class="stat-l">CGPA / 10</div>
         </div>
-    </section>
-
-    <section class="section" id="about">
-        <div class="container">
-            <h2 class="section-title">What is TED<span class="x-red">x</span>?</h2>
-            <p class="section-subtitle">Bringing the power of ideas to our local community.</p>
-
-            <div class="about-grid">
-                <div class="about-visual">
-                    </div>
-                <div class="about-text">
-                    <p class="lead-paragraph">
-                        In the spirit of **"ideas worth spreading,"** TED has created TEDx: a program of local, self-organized events that bring people together to share a TED-like experience.
-                    </p>
-                    <p>
-                        Our event, **TEDxVIT**, is fully independent, organized by passionate local volunteers who seek to uncover new ideas and share cutting-edge research relevant to our community. The **'x'** means it's independently organized, but it adheres to TED's core values.
-                    </p>
-                    <p>
-                        At TEDxVIT, powerful live speakers and curated TED Talk videos combine to spark deep discussion and connection in a small, intimate group setting, fostering a genuine exchange of transformative thought.
-                    </p>
-                    <a href="#" class="btn btn-secondary" style="margin-top: 20px;">
-                        Explore the TEDx Mission
-                    </a>
-                </div>
-            </div>
+        <div class="stat">
+          <div class="stat-n"><span id="c2">0</span>+</div>
+          <div class="stat-l">Projects</div>
         </div>
-    </section>
-    
-    <section class="section speakers-section" id="speakers">
-        <div class="container">
-            <h2 class="section-title">Our Visionaries</h2>
-            <p class="section-subtitle">Meet the innovators and thought leaders on the TEDxVIT stage.</p>
-
-            <div class="speaker-grid">
-                <div class="speaker-card">
-                    <div class="speaker-photo-wrapper" style="background-image: url('https://via.placeholder.com/400x400/1A1A1A/FFFFFF?text=Dr.+Ramesh+M');"></div>
-                    <h3>Dr. Ramesh M.</h3>
-                    <p class="x-red" style="font-weight: 600;">AI & Future Technology</p>
-                    <p class="speaker-bio">Leading expert on decentralized AI systems and data privacy.</p>
-                    <div class="social-links-small">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-
-                <div class="speaker-card">
-                    <div class="speaker-photo-wrapper" style="background-image: url('https://via.placeholder.com/400x400/1A1A1A/FFFFFF?text=Ms.+Priya+S');"></div>
-                    <h3>Ms. Priya S.</h3>
-                    <p class="x-red" style="font-weight: 600;">Sustainable Urbanism</p>
-                    <p class="speaker-bio">Architect promoting zero-waste design and community resilience.</p>
-                    <div class="social-links-small">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-
-                <div class="speaker-card">
-                    <div class="speaker-photo-wrapper" style="background-image: url('https://via.placeholder.com/400x400/1A1A1A/FFFFFF?text=Mr.+Arun+V');"></div>
-                    <h3>Mr. Arun V.</h3>
-                    <p class="x-red" style="font-weight: 600;">Mental Wellness Pioneer</p>
-                    <p class="speaker-bio">Founder of a successful social-emotional learning platform.</p>
-                    <div class="social-links-small">
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-                
-                <div class="speaker-card">
-                    <div class="speaker-photo-wrapper" style="background-image: url('https://via.placeholder.com/400x400/1A1A1A/FFFFFF?text=Dr.+Anjali+K');"></div>
-                    <h3>Dr. Anjali K.</h3>
-                    <p class="x-red" style="font-weight: 600;">Space Economics</p>
-                    <p class="speaker-bio">Astrophysicist and consultant on commercial space ventures.</p>
-                    <div class="social-links-small">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <a href="#" class="btn btn-outline large-btn" style="margin-top: 50px;">
-                View Detailed Speaker Bios
-            </a>
+        <div class="stat">
+          <div class="stat-n"><span id="c3">0</span></div>
+          <div class="stat-l">Internships</div>
         </div>
-    </section>
-
-    <section class="section" id="previous-events">
-        <div class="container">
-            <h2 class="section-title">Our Legacy</h2>
-            <p class="section-subtitle">A look back at the ideas that shaped our previous events.</p>
-
-            <div class="event-timeline">
-                
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>TEDxVIT 2024</h3>
-                        <p class="theme">Theme: **Nurture The Future**</p>
-                        <span class="date"><i class="far fa-calendar-alt"></i> January 2024</span>
-                        <p>Focused on regenerative practices, human-centric design, and conscious consumption.</p>
-                        <a href="#" class="view-talks-link">Watch Talks &rarr;</a>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>TEDxVIT 2021</h3>
-                        <p class="theme">Theme: **Epiphany**</p>
-                        <span class="date"><i class="far fa-calendar-alt"></i> May 2021</span>
-                        <p>Explored moments of sudden realization, innovation born from crisis, and paradigm shifts.</p>
-                        <a href="#" class="view-talks-link">Watch Talks &rarr;</a>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>TEDxVIT 2019</h3>
-                        <p class="theme">Theme: **Ideas Worth Spreading**</p>
-                        <span class="date"><i class="far fa-calendar-alt"></i> March 2019</span>
-                        <p>Our inaugural event, celebrating the fundamental TED mission with local flavor.</p>
-                        <a href="#" class="view-talks-link">Watch Talks &rarr;</a>
-                    </div>
-                </div>
-                
-            </div>
+        <div class="stat">
+          <div class="stat-n" style="color:var(--accent)">4+</div>
+          <div class="stat-l">IEEE Papers</div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section class="call-to-action">
-        <div class="container">
-            <h2>Ready to Witness the Breakthrough?</h2>
-            <p>
-                Join us for a day of inspiration, connection, and revolutionary ideas that will shape your perspective and ignite your passion for change.
-            </p>
-            <a href="#" class="btn btn-secondary large-btn">
-                Secure Your Seat Today <i class="fas fa-arrow-circle-right"></i>
-            </a>
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="mtrack"></div>
+</div>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="sec-label">01 / About</div>
+        <div class="info-list">
+          <div class="info-row"><div class="info-icon">✉️</div><div class="info-text"><h5>Email</h5><p>tejeswarbalasubramanian@gmail.com</p></div></div>
+          <div class="info-row"><div class="info-icon">📍</div><div class="info-text"><h5>Location</h5><p>Chennai, Tamil Nadu, India</p></div></div>
+          <div class="info-row"><div class="info-icon">🏛️</div><div class="info-text"><h5>University</h5><p>B.S.Abdur Rahman Crescent IST</p></div></div>
+          <div class="info-row"><div class="info-icon">🐙</div><div class="info-text"><h5>GitHub</h5><p>github.com/Tejeswar-06</p></div></div>
+          <div class="info-row"><div class="info-icon">💼</div><div class="info-text"><h5>LinkedIn</h5><p>linkedin.com/in/tejeswar-balasubramanian</p></div></div>
+          <div class="info-row"><div class="info-icon">🎂</div><div class="info-text"><h5>Date of Birth</h5><p>06 October 2005</p></div></div>
         </div>
-    </section>
-
-    <section class="section contact-us" id="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <p class="section-subtitle">We'd love to hear from you for partnerships, media, or general inquiries.</p>
-
-            <div class="contact-grid">
-                <div class="contact-info-block">
-                    <i class="fas fa-envelope"></i>
-                    <h3>General Inquiries</h3>
-                    <p>Reach out for event details and general questions.</p>
-                    <p><a href="mailto:info@tedxvit.com">info@tedxvit.com</a></p>
-                </div>
-
-                <div class="contact-info-block">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <h3>Venue Location</h3>
-                    <p>VELS University Auditorium</p>
-                    <p><a href="#">Chennai, Tamil Nadu</a></p>
-                </div>
-
-                <div class="contact-info-block">
-                    <i class="fas fa-phone-alt"></i>
-                    <h3>Support Line</h3>
-                    <p>For urgent ticket or registration support.</p>
-                    <p><a href="tel:+919324038187">+91 93240 38187</a></p>
-                </div>
-            </div>
-            
-            <div class="contact-form-map-placeholder">
-                <p>Contact Form / Embedded Map</p>
-            </div>
+      </div>
+      <div class="reveal reveal-d1">
+        <div class="sec-label">/ Who I Am</div>
+        <h2 class="sec-title">Building the future,<br>one circuit at a time</h2>
+        <p class="about-para">I'm a B.Tech ECE student at B.S. Abdur Rahman Crescent IST, driven by deep curiosity for how signals, systems, and circuits shape our connected world.</p>
+        <p class="about-para">From designing PCBs and programming embedded systems to simulating wireless protocols in MATLAB — I bring hands-on, end-to-end perspective to every engineering challenge. Currently a Summer Fellow at <strong>IIT Madras</strong>, Department of Electrical Engineering.</p>
+        <div class="cgpa-block">
+          <div class="cgpa-num">9.64</div>
+          <div class="cgpa-info">
+            <h4>Academic Excellence</h4>
+            <p>CGPA — B.Tech ECE, 2023–2027</p>
+            <p style="margin-top:4px;color:var(--accent);font-size:.82rem">B.S.Abdur Rahman Crescent IST</p>
+          </div>
         </div>
-    </section>
-
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <a href="#" class="logo">TED<span class="x-red">x</span>VIT</a>
-                    <p class="license">
-                        This independent TEDx event is operated under license from TED.
-                        <br>&copy; 2025 TEDxVIT. All Rights Reserved.
-                    </p>
-                </div>
-
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#about">About TEDx</a></li>
-                        <li><a href="#speakers">Speaker Lineup</a></li>
-                        <li><a href="#previous-events">Past Talks</a></li>
-                        <li><a href="#">Apply to Speak</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-social">
-                    <h4>Follow Us</h4>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                Designed with the spirit of ideas worth spreading.
-            </div>
+        <p class="about-para" style="font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem">Core Technical Stack</p>
+        <div class="stack-pills">
+          <span class="pill hot">GNU Radio</span><span class="pill hot">MATLAB</span>
+          <span class="pill hot">KiCad</span><span class="pill hot">Python</span>
+          <span class="pill">HFSS / CST</span><span class="pill">Verilog HDL</span>
+          <span class="pill">Open5GS</span><span class="pill">Cadence</span>
+          <span class="pill">Arduino IDE</span><span class="pill">Embedded C</span>
+          <span class="pill">Gpredict</span><span class="pill">SatNOGS</span>
+          <span class="pill">Xilinx ISE</span><span class="pill">LaTeX</span>
         </div>
-    </footer>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        // --- Mobile Menu Toggle ---
-        const menuToggle = document.getElementById('menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
+<!-- INTERESTS horizontal scroll -->
+<div class="h-scroll-section">
+  <div style="padding:0 clamp(20px,5vw,60px);margin-bottom:2rem">
+    <div class="sec-label" style="justify-content:flex-start;display:flex;align-items:center;gap:8px">
+      <span style="width:24px;height:1.5px;background:var(--accent);display:block"></span>02 / Areas of Interest
+    </div>
+    <h2 class="sec-title" style="font-family:var(--display);font-size:clamp(2.2rem,4vw,3rem);font-weight:800;line-height:1.05;letter-spacing:-.04em;color:var(--ink)">What drives my curiosity</h2>
+  </div>
+  <div style="overflow:hidden">
+    <div class="h-scroll-track" id="interests-track"></div>
+  </div>
+</div>
 
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+<!-- EDUCATION -->
+<section class="education-section" id="education">
+  <div class="wrap">
+    <div class="sec-label reveal">03 / Education</div>
+    <h2 class="sec-title reveal">Academic Journey</h2>
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <span class="edu-year">2023 — 2027</span>
+        <h3>B.Tech. Electronics & Communication Engineering</h3>
+        <h4>B.S. Abdur Rahman Crescent Institute of Science & Technology, Chennai</h4>
+        <div class="edu-grade">9.64</div>
+        <div class="edu-grade-lbl">CGPA / 10.0</div>
+      </div>
+      <div class="edu-card reveal reveal-d1">
+        <span class="edu-year">2022 — 2023</span>
+        <h3>Higher Secondary Education — Class 12</h3>
+        <h4>Sri Sankara Vidyalaya Matriculation Hr. Sec. School, Chennai</h4>
+        <div class="edu-grade">89%</div>
+        <div class="edu-grade-lbl">Percentage Score</div>
+      </div>
+      <div class="edu-card reveal reveal-d2">
+        <span class="edu-year">2020 — 2021</span>
+        <h3>Secondary School Education — Class 10</h3>
+        <h4>Sri Sankara Vidyalaya Matriculation Hr. Sec. School, Chennai</h4>
+        <div class="edu-grade">93%</div>
+        <div class="edu-grade-lbl">Percentage Score</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // --- Countdown Timer Logic (for the Hero Section) ---
-        const eventDate = new Date("2025-02-15T09:00:00").getTime(); // Target event date
+<!-- EXPERIENCE -->
+<section class="experience-section" id="experience">
+  <div class="wrap">
+    <div class="sec-label reveal">04 / Experience</div>
+    <h2 class="sec-title reveal" style="color:var(--ink)">Internship &<br>Fellowship Experience</h2>
+    <div class="exp-grid">
 
-        const x = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = eventDate - now;
+      <!-- IITM — NEW -->
+      <div class="exp-card featured reveal">
+        <div class="iitm-tag">⭐ IIT Madras Summer Fellowship 2026</div>
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Summer Research Fellow — Electrical Engineering</div>
+            <div class="exp-org">Indian Institute of Technology Madras (IIT Madras) · Chennai</div>
+          </div>
+          <div class="exp-period">May 18, 2026 — Jul 17, 2026</div>
+        </div>
+        <p class="exp-body">Selected for the prestigious IITM Summer Fellowship Programme 2026 in the Department of Electrical Engineering, based on academic credentials. Awarded a stipend of ₹15,000/month for the two-month duration. Reference: SFP/2026/0121, issued by Prof. Shanti Bhattacharya, HoD.</p>
+        <div class="exp-points">
+          <div class="exp-point">Working under the Department of Electrical Engineering at IIT Madras on advanced research projects.</div>
+          <div class="exp-point">Engaging with faculty and research groups in domains aligned with communication systems and signal processing.</div>
+          <div class="exp-point">One of the most selective undergraduate research fellowships in India's premier technical institution.</div>
+        </div>
+      </div>
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      <!-- AAI -->
+      <div class="exp-card reveal">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">RF & Communication Systems Intern</div>
+            <div class="exp-org">Airport Authority of India (AAI) · Chennai</div>
+          </div>
+          <div class="exp-period">Jun 2025 — Jul 2025</div>
+        </div>
+        <p class="exp-body">Practical training in Air Traffic Services (ATS) and CNS divisions — Communication, Navigation, and Surveillance — with exposure to both procedural and technical aspects of ATC across Indian FIRs.</p>
+        <div class="exp-points">
+          <div class="exp-point">VHF/HF radio telephony, VCSS, AMSS with redundancy and failover protocols in critical communication networks.</div>
+          <div class="exp-point">Hands-on with DVOR, DME, and ILS — signal propagation, glide path & localizer functions, site calibration.</div>
+          <div class="exp-point">Studied PSR, MSSR, and SMR live data flows; Mode A/C/S transponder interrogation, radar data fusion & ADS-B integration.</div>
+          <div class="exp-point">Shadowed real-time ATS operations: flight plan processing, sectorization, airspace management.</div>
+        </div>
+      </div>
 
-            const formatTime = (time) => String(time).padStart(2, '0');
+      <!-- Sathya Jyothi -->
+      <div class="exp-card reveal">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Audio Mixing & DSP Intern</div>
+            <div class="exp-org">Sathya Jyothi Films · Chennai</div>
+          </div>
+          <div class="exp-period">Jun 2025 — Jul 2025</div>
+        </div>
+        <p class="exp-body">Assisted in professional audio mixing and post-production workflows for film projects, applying ECE core concepts in a real-world creative studio environment.</p>
+        <div class="exp-points">
+          <div class="exp-point">Applied DSP concepts — digital filtering, EQ, noise reduction, and dynamic range control in production.</div>
+          <div class="exp-point">Hands-on with mixing consoles, DAWs, and professional studio microphones including Neumann TLM 102.</div>
+          <div class="exp-point">Spatial audio adjustments, signal routing, and analog/digital processing for enhanced audio clarity.</div>
+        </div>
+      </div>
 
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("countdown").innerHTML = "<p class='event-tagline' style='font-size: 2rem; color: var(--tedx-red);'>EVENT IS LIVE!</p>";
-            } else {
-                document.getElementById("days").innerHTML = formatTime(days);
-                document.getElementById("hours").innerHTML = formatTime(hours);
-                document.getElementById("minutes").innerHTML = formatTime(minutes);
-                document.getElementById("seconds").innerHTML = formatTime(seconds);
-            }
-        }, 1000);
+      <!-- Robovision -->
+      <div class="exp-card reveal">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Embedded Systems & PCB Design Intern</div>
+            <div class="exp-org">Robovision Pvt Ltd · Chennai</div>
+          </div>
+          <div class="exp-period">Feb 2025 — Present</div>
+        </div>
+        <p class="exp-body">Contributing to the Electronics and Embedded Systems division with focus on PCB design, development, and testing for STEM education modules and internal R&D projects.</p>
+        <div class="exp-points">
+          <div class="exp-point">Hands-on with ESP32, Arduino, and various sensors for real-time embedded application development.</div>
+          <div class="exp-point">Designing custom PCBs for prototyping and STEM kits using KiCad — schematic to layout to review.</div>
+          <div class="exp-point">Embedded C programming, debugging, and code optimisation for reliable hardware performance.</div>
+          <div class="exp-point">Supporting STEM workshops and technical mentorship for school and college students.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // Close mobile menu on link click
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 992) {
-                    navLinks.classList.remove('active');
-                }
-            });
-        });
-    </script>
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
+  <div class="wrap">
+    <div class="sec-label reveal">05 / Projects</div>
+    <h2 class="sec-title reveal">Hardware · Software · Research</h2>
+    <div class="projects-grid" id="proj-grid">
+      <!-- injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section class="pub-section" id="publications">
+  <div class="wrap">
+    <div class="sec-label reveal">06 / Publications</div>
+    <h2 class="sec-title reveal">IEEE Published Research</h2>
+    <div class="pub-grid">
+      <div class="pub-card reveal">
+        <div class="pub-badge">IEEE</div>
+        <div>
+          <div class="pub-conf">IEEE ICUIS 2024 · 4th International Conference on Ubiquitous Computing and Intelligent Information Systems</div>
+          <div class="pub-title">Driver Weariness and Alcoholic Intoxication Detection System</div>
+          <div class="pub-desc">Real-time system for monitoring driver fatigue and alcohol intoxication using blink rate detection, pulse monitoring, and alcohol sensors — with emergency alert capabilities, enhancing road safety through intelligent signal processing.</div>
+        </div>
+      </div>
+      <div class="pub-card reveal">
+        <div class="pub-badge">IEEE</div>
+        <div>
+          <div class="pub-conf">IEEE ICINVENTS 2025 · First International Conference on Innovations in Engineering and Next-Generation Technologies for Sustainability</div>
+          <div class="pub-title">Review of Beam Steering at 60 GHz in Millimeter Wave Systems</div>
+          <div class="pub-desc">Comprehensive review of beam steering techniques at 60 GHz in millimeter wave systems, covering phased array architectures, beamforming algorithms, and performance analysis for next-generation wireless communication.</div>
+        </div>
+      </div>
+      <div class="pub-card reveal" style="border-color:rgba(201,168,76,.3)">
+        <div class="pub-badge award">🏆</div>
+        <div>
+          <div class="pub-conf">IEEE Nilgiris Global Summit 2026 · Best Paper Award</div>
+          <div class="pub-title">AI-Based Road Infrastructure Monitoring (YOLOv8 Pothole Detection)</div>
+          <div class="pub-desc">Implemented a YOLOv8-based real-time system for detecting potholes and cracks, awarded Best Paper at the Nilgiris Global Summit 2026 for contributions to smart road infrastructure monitoring.</div>
+        </div>
+      </div>
+      <div class="pub-card reveal" style="border-color:rgba(0,71,255,.2)">
+        <div class="pub-badge" style="background:var(--blue)">5+</div>
+        <div>
+          <div class="pub-conf">Under Publication · 4 Journal Papers Under Review + 5 Conference Papers Pending</div>
+          <div class="pub-title">Active Research Pipeline (2025–2026)</div>
+          <div class="pub-desc">Ongoing research in Doppler shift in OFDM-LEO systems, narrowband FM anti-jamming via GNU Radio, 6TiSCH IoT LLN optimisation, LDPC-coded MIMO over Rayleigh fading, CNN-based spine abnormality detection, THz NOMA/OMA uplink analysis.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="achieve-section" id="achievements">
+  <div class="wrap">
+    <div class="sec-label reveal">07 / Achievements</div>
+    <h2 class="sec-title reveal">Awards & Milestones</h2>
+    <div class="achieve-grid">
+      <div class="achieve-card accent-card reveal">
+        <span class="achieve-icon">🥇</span>
+        <h3>1st Place — AEROCREST'26 Hackathon</h3>
+        <p>Designed a Mars habitat (ALSH) focused on sustainability, structural efficiency, and in-situ resource utilisation.</p>
+      </div>
+      <div class="achieve-card reveal reveal-d1">
+        <span class="achieve-icon">🏆</span>
+        <h3>Best Paper Award — IEEE Nilgiris Global Summit 2026</h3>
+        <p>Recognised for AI-based road infrastructure monitoring using YOLOv8 for real-time pothole detection.</p>
+      </div>
+      <div class="achieve-card reveal reveal-d2">
+        <span class="achieve-icon">🎖️</span>
+        <h3>Best Paper Presentation — ICMINT'25, SRMIST</h3>
+        <p>Awarded for "Nivora" — an IoT and ML-based real-time SOS and surveillance system.</p>
+      </div>
+      <div class="achieve-card reveal">
+        <span class="achieve-icon">🎤</span>
+        <h3>TEDx BSA Crescent — Organising Team</h3>
+        <p>Contributed to planning and execution of a large-scale TEDx event following global standards with cross-functional coordination.</p>
+      </div>
+      <div class="achieve-card reveal reveal-d1">
+        <span class="achieve-icon">⚡</span>
+        <h3>Coordinator — Circuit Quest, SPECTRON'26</h3>
+        <p>Organised a national-level circuit design competition with 350+ participants; managed multi-round challenges.</p>
+      </div>
+      <div class="achieve-card reveal reveal-d2">
+        <span class="achieve-icon">🌐</span>
+        <h3>8+ National & International Conferences</h3>
+        <p>Attended and presented at conferences gaining exposure to emerging research in ECE and communication systems.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="wrap">
+    <div class="sec-label reveal">08 / Technical Skills</div>
+    <h2 class="sec-title reveal" style="color:var(--paper)">The Engineering Toolkit</h2>
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <div class="sg-title">📡 RF & Comms Tools</div>
+        <div class="sg-pills">
+          <span class="sg-pill">GNU Radio</span><span class="sg-pill">MATLAB</span>
+          <span class="sg-pill">HFSS</span><span class="sg-pill">CST</span>
+          <span class="sg-pill">Open5GS</span><span class="sg-pill">Gpredict</span>
+          <span class="sg-pill">SatNOGS</span>
+        </div>
+      </div>
+      <div class="skill-group reveal reveal-d1">
+        <div class="sg-title">🔌 Embedded & PCB</div>
+        <div class="sg-pills">
+          <span class="sg-pill">KiCad</span><span class="sg-pill">EasyEDA</span>
+          <span class="sg-pill">Arduino IDE</span><span class="sg-pill">Keil µVision</span>
+          <span class="sg-pill">Multisim</span><span class="sg-pill">ESP32</span>
+          <span class="sg-pill">nRF52840</span>
+        </div>
+      </div>
+      <div class="skill-group reveal reveal-d2">
+        <div class="sg-title">💻 Programming</div>
+        <div class="sg-pills">
+          <span class="sg-pill">Embedded C</span><span class="sg-pill">Verilog HDL</span>
+          <span class="sg-pill">Python</span><span class="sg-pill">MATLAB Script</span>
+          <span class="sg-pill">C / C++</span><span class="sg-pill">LaTeX</span>
+          <span class="sg-pill">Assembly (8086/8051)</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="sg-title">⚙️ VLSI & Design</div>
+        <div class="sg-pills">
+          <span class="sg-pill">Cadence (Genus/Innovus)</span>
+          <span class="sg-pill">Xilinx ISE</span>
+          <span class="sg-pill">RTL to GDSII</span>
+          <span class="sg-pill">Cisco Packet Tracer</span>
+          <span class="sg-pill">Creo</span>
+        </div>
+      </div>
+      <div class="skill-group reveal reveal-d1">
+        <div class="sg-title">🌐 Web & Productivity</div>
+        <div class="sg-pills">
+          <span class="sg-pill">HTML</span><span class="sg-pill">CSS</span>
+          <span class="sg-pill">JavaScript</span><span class="sg-pill">Canva</span>
+          <span class="sg-pill">Notion</span><span class="sg-pill">Microsoft Office</span>
+        </div>
+      </div>
+      <div class="skill-group reveal reveal-d2">
+        <div class="sg-title">🤝 Soft Skills</div>
+        <div class="sg-pills">
+          <span class="sg-pill">Communication</span><span class="sg-pill">Leadership</span>
+          <span class="sg-pill">Presentation</span><span class="sg-pill">Problem Solving</span>
+          <span class="sg-pill">Adaptability</span><span class="sg-pill">Decision Making</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="sec-label">09 / Contact</div>
+        <h2 class="contact-cta">Let's build<br><em>something great</em></h2>
+        <p style="color:var(--muted);line-height:1.9;font-size:.97rem">Open to research collaborations, internships, and interesting engineering conversations. Whether it's RF systems, embedded platforms, or 5G simulations — I'm all ears.</p>
+        <div class="contact-links">
+          <a href="mailto:tejeswarbalasubramanian@gmail.com" class="clink">
+            <div class="clink-icon">✉️</div>
+            <div class="clink-text"><h5>Email</h5><p>tejeswarbalasubramanian@gmail.com</p></div>
+          </a>
+          <a href="https://www.linkedin.com/in/tejeswar-balasubramanian-15443629b" target="_blank" rel="noopener" class="clink">
+            <div class="clink-icon">💼</div>
+            <div class="clink-text"><h5>LinkedIn</h5><p>linkedin.com/in/tejeswar-balasubramanian</p></div>
+          </a>
+          <a href="https://github.com/Tejeswar-06" target="_blank" rel="noopener" class="clink">
+            <div class="clink-icon">🐙</div>
+            <div class="clink-text"><h5>GitHub</h5><p>github.com/Tejeswar-06</p></div>
+          </a>
+          <a href="tel:+919444379672" class="clink">
+            <div class="clink-icon">📞</div>
+            <div class="clink-text"><h5>Phone</h5><p>+91 94443 79672</p></div>
+          </a>
+        </div>
+      </div>
+      <div class="reveal reveal-d1">
+        <div class="contact-form">
+          <form id="cform">
+            <div class="form-row">
+              <div class="form-field"><label>Name</label><input type="text" class="form-input" placeholder="Your name" required></div>
+              <div class="form-field"><label>Email</label><input type="email" class="form-input" placeholder="you@email.com" required></div>
+            </div>
+            <div class="form-field"><label>Subject</label><input type="text" class="form-input" placeholder="What's this about?" required></div>
+            <div class="form-field"><label>Message</label><textarea class="form-input" placeholder="Tell me about your project or idea…" required></textarea></div>
+            <button type="submit" class="submit-btn" id="sbtn">Send Message →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot-inner">
+    <div class="foot-copy">© 2026 Tejeswar N B · Built with passion ⚡</div>
+    <div class="foot-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#publications">Publications</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+/* ── LOADER ── */
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    document.getElementById('loader').classList.add('done');
+    setTimeout(()=>document.getElementById('loader').remove(),700);
+  },1700);
+});
+
+/* ── CURSOR ── */
+const dot=document.querySelector('#cur .dot');
+const ring=document.querySelector('#cur .ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  dot.style.left=mx+'px';dot.style.top=my+'px';
+});
+(function animRing(){
+  rx+=(mx-rx)*.1;ry+=(my-ry)*.1;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+})();
+
+/* ── NAV ── */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',scrollY>60);
+  document.getElementById('scrollTop').classList.toggle('show',scrollY>500);
+});
+
+/* ── MARQUEE DATA ── */
+const marqItems=['RF Systems','Embedded Design','PCB Layout','Signal Processing','VLSI','GNU Radio','MATLAB','5G Research','Satellite Comms','IEEE Published','IIT Madras Fellow'];
+const track=document.getElementById('mtrack');
+const full=[...marqItems,...marqItems,...marqItems,...marqItems];
+full.forEach(t=>{
+  const el=document.createElement('div');
+  el.className='marquee-item';
+  el.innerHTML=`${t} <span class="dot">✦</span>`;
+  track.appendChild(el);
+});
+
+/* ── INTERESTS DATA ── */
+const interests=[
+  {icon:'📡',title:'Communication Systems',desc:'Wireless comms, FHSS, NOMA vs OMA, ATC/CNS protocols, and reliable data transmission through noisy environments.'},
+  {icon:'🔌',title:'Embedded Systems & IoT',desc:'Real-time solutions with ESP32, Arduino, nRF52840 — sensor integration, motor drivers, and cloud-connected devices.'},
+  {icon:'🖨️',title:'PCB Design',desc:'Production-ready PCBs for robotics and STEM using KiCad and EasyEDA, from schematic to fabrication.'},
+  {icon:'🧮',title:'VLSI Design',desc:'Verilog HDL and Cadence RTL-to-GDSII flow — logic synthesis to physical design and verification.'},
+  {icon:'🌊',title:'Digital Signal Processing',desc:'DSP in audio post-production and wireless comms — filtering, equalization, Doppler correction, and BER analysis.'},
+  {icon:'🛰️',title:'Satellite Communications',desc:'LEO ground stations, Doppler shift compensation, OFDM channel simulation, automated pass scheduling.'},
+  {icon:'🤖',title:'AI/ML in Engineering',desc:'CNN-based medical imaging, YOLOv8 road monitoring, neural network power allocation for satellite systems.'},
+  {icon:'📶',title:'5G / mmWave Systems',desc:'Open5GS virtualised 5G core, 28 GHz phased array antennas, beam steering at 60 GHz.'},
+];
+const itrack=document.getElementById('interests-track');
+[...interests,...interests].forEach(d=>{
+  const el=document.createElement('div');
+  el.className='interest-chip';
+  el.innerHTML=`<span class="ic-icon">${d.icon}</span><h3>${d.title}</h3><p>${d.desc}</p>`;
+  itrack.appendChild(el);
+});
+
+/* ── PROJECTS DATA ── */
+const projects=[
+  {n:'01',icon:'🚗',title:'Driver Weariness & Alcohol Detection System',desc:'Real-time driver monitoring using drowsiness detection, blink rate, and pulse sensing with emergency alert mechanism.',tags:['Computer Vision','IoT','IEEE Published'],dark:true},
+  {n:'02',icon:'📡',title:'FHSS Anti-Jamming Communication System',desc:'Frequency-Hopping Spread Spectrum using GNU Radio against narrowband jammers. Simulated NBFM with Gaussian noise, BER & spectral efficiency analysis, AI/ML adaptive channel selection.',tags:['GNU Radio','SDR','FHSS','Anti-Jamming']},
+  {n:'03',icon:'📶',title:'NOMA vs OMA Performance Analysis',desc:'MATLAB simulation comparing spectral efficiency, throughput, and user fairness under Rayleigh fading channels. Highlights NOMA\'s advantages for 5G and IoT dense networks.',tags:['MATLAB','NOMA','5G','Fading Channels']},
+  {n:'04',icon:'🛰️',title:'NeuroSat — AI-Based Power Allocation in LEO Systems',desc:'Neural network model for optimising power allocation under Doppler effects in satellite communication systems.',tags:['Python','Neural Network','LEO','Satellite'],dark:true},
+  {n:'05',icon:'📻',title:'5G Core-Based Virtual Communication System',desc:'Implemented wireless voice and video call setup using virtualised 5G core (Open5GS) and RAN architecture.',tags:['Open5GS','5G','VoIP','RAN']},
+  {n:'06',icon:'🔬',title:'28 GHz Phased Array Antenna (1×16)',desc:'Designed and analysed a mmWave phased array patch antenna for beam steering applications in next-gen wireless.',tags:['HFSS','mmWave','Antenna','Beam Steering']},
+  {n:'07',icon:'🛡️',title:'NIVORA — Intelligent SOS & IoT Surveillance',desc:'IoT safety solution using Nordic nRF52840, GPS, ML assistance, and cloud. SOS alerts, location tracking, Telegram/Blynk notifications.',tags:['nRF52840','GPS','IoT','ML']},
+  {n:'08',icon:'❄️',title:'Smart Cold Chain Monitoring System',desc:'Low-cost, battery-less sensor system for real-time temperature tracking in rural fishery and perishable supply chains with NFC-based data access.',tags:['NFC','IoT','Sensors','Battery-less']},
+  {n:'09',icon:'🔧',title:'Hall Effect Sensor Interface with FPGA',desc:'Verilog implementation on Spartan-3 FPGA for precise signal detection — contactless current sensing, motor control & industrial automation.',tags:['Verilog','FPGA','Xilinx','Spartan-3']},
+  {n:'10',icon:'🌐',title:'Multi-Node Communication using nRF52840',desc:'Implemented wireless communication between multiple nodes for low-power embedded networking applications.',tags:['nRF52840','BLE','Embedded','Mesh']},
+  {n:'11',icon:'🛸',title:'SDR-Based Beam Steering System',desc:'Developing beam steering using GNU Radio on FR4-based setup for adaptive wireless communication. Active research project.',tags:['GNU Radio','SDR','Beam Steering','FR4'],wip:true},
+  {n:'12',icon:'🔭',title:'Low-Cost LEO Satellite Ground Station',desc:'Cost-effective ground station for LEO satellites with antenna tracking, Doppler correction, and automated pass scheduling.',tags:['Gpredict','SatNOGS','Doppler','LEO'],wip:true},
+];
+const grid=document.getElementById('proj-grid');
+projects.forEach(p=>{
+  const el=document.createElement('div');
+  el.className='proj-card reveal'+(p.dark?' dark':'');
+  el.innerHTML=`
+    <div class="proj-num">${p.n}</div>
+    <div class="proj-icon">${p.icon}</div>
+    ${p.wip?'<div class="wip-badge">In Progress</div>':''}
+    <h3>${p.title}</h3>
+    <p>${p.desc}</p>
+    <div class="tag-row">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+  `;
+  grid.appendChild(el);
+});
+
+/* ── REVEAL OBSERVER ── */
+const obs=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* ── HERO COUNTERS ── */
+function counter(id,target,dec=0,delay=0){
+  setTimeout(()=>{
+    const el=document.getElementById(id);if(!el)return;
+    const t0=performance.now();
+    (function go(now){
+      const p=Math.min((now-t0)/1600,1),e=1-Math.pow(1-p,3);
+      el.textContent=dec?(e*target).toFixed(0):Math.round(e*target);
+      if(p<1)requestAnimationFrame(go);
+    })(t0);
+  },delay);
+}
+
+const heroObs=new IntersectionObserver(es=>{
+  if(es[0].isIntersecting){
+    counter('c1',9,0,400);
+    counter('c2',15,0,600);
+    counter('c3',4,0,800);
+    heroObs.disconnect();
+  }
+},{threshold:.3});
+heroObs.observe(document.querySelector('.hero'));
+
+/* ── PROJ CARD GLOW ── */
+document.querySelectorAll('.proj-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    card.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');
+    card.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');
+  });
+});
+
+/* ── CONTACT FORM ── */
+document.getElementById('cform').addEventListener('submit',e=>{
+  e.preventDefault();
+  const btn=document.getElementById('sbtn');
+  btn.textContent='Message Sent ✓';btn.style.background='#16a34a';
+  setTimeout(()=>{btn.textContent='Send Message →';btn.style.background='';e.target.reset();},3000);
+});
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+</script>
 </body>
 </html>
